@@ -15,8 +15,6 @@ public class TapSwipeDetection : MonoBehaviour
     Vector2 startPos;
     Vector2 endPos; 
 
-
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
