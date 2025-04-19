@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InputManager : Singleton<InputManager>
+public class InputManager : MonoBehaviour
 {
     PlayerControls input;
     Camera mainCamera;
@@ -8,31 +8,33 @@ public class InputManager : Singleton<InputManager>
     public event System.Action OnTouchBegin;
     public event System.Action OnTouchEnd;
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        input = new PlayerControls();
         mainCamera = Camera.main;
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
+        input = new PlayerControls();
+
         input.Enable();
         input.Base.Touch.started += ctx => OnTouchBegin?.Invoke();
         input.Base.Touch.canceled += ctx => OnTouchEnd?.Invoke();
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
-        input.Disable();
         input.Base.Touch.started -= ctx => OnTouchBegin?.Invoke();
         input.Base.Touch.canceled -= ctx => OnTouchEnd?.Invoke();
+        input.Disable();
     }
 
     public Vector2 PrimaryPosition()
     {
-        Vector2 touchPos = input.Base.Touch.ReadValue<Vector2>();
+        Vector2 touchPos = input.Base.PrimaryPosition.ReadValue<Vector2>();
+
+        if (!mainCamera) mainCamera = Camera.main;
+
         return mainCamera.ScreenToWorldPoint(new Vector3(touchPos.x, touchPos.y, mainCamera.nearClipPlane));
     }
-
 }

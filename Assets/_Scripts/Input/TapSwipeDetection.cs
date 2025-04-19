@@ -1,10 +1,11 @@
-using System;
 using UnityEngine;
 
 public class TapSwipeDetection : MonoBehaviour
 {
+    InputManager im;
+
     //variables to control tapping and swiping
-    float distThreshold = 0.5f;
+    float distThreshold = 0.8f;
     float dirThreshold = 0.9f;
 
     float tapTimeout = 0.2f;
@@ -13,34 +14,50 @@ public class TapSwipeDetection : MonoBehaviour
     float endTime = 0;
 
     Vector2 startPos;
-    Vector2 endPos; 
+    Vector2 endPos;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        InputManager.Instance.OnTouchBegin += TouchStarted;
-        InputManager.Instance.OnTouchEnd += TouchEnded;
+
+
     }
+
+    private void OnEnable()
+    {
+        im = Bootstrapper.Instance.InputManager;
+        im.OnTouchBegin += TouchStarted;
+        im.OnTouchEnd += TouchEnded;
+    }
+
+    private void OnDisable()
+    {
+        im.OnTouchBegin -= TouchStarted;
+        im.OnTouchEnd -= TouchEnded;
+    }
+
 
     private void TouchStarted()
     {
-        startPos = InputManager.Instance.PrimaryPosition();
+        startPos = im.PrimaryPosition();
         startTime = Time.time;
     }
 
     private void TouchEnded()
     {
         endTime = Time.time;
-        endPos = InputManager.Instance.PrimaryPosition();
+        endPos = im.PrimaryPosition();
         DetectInput();
     }
+
 
     private void DetectInput()
     {
         float totalTime = endTime - startTime;
         if (totalTime > swipeTimeout)
         {
-            Debug.Log("not a tap or swipe");
+            Debug.Log("Not a tap or swipe");
             return;
         }
 
@@ -53,10 +70,9 @@ public class TapSwipeDetection : MonoBehaviour
         CheckSwipe();
     }
 
-
     private void Tap()
     {
-        Debug.Log($"Tap at {InputManager.Instance.PrimaryPosition()}");
+        Debug.Log($"Tap at {im.PrimaryPosition()}");
     }
 
     private void CheckSwipe()
@@ -64,40 +80,33 @@ public class TapSwipeDetection : MonoBehaviour
         float distance = Vector2.Distance(startPos, endPos);
         if (distance < distThreshold) return;
 
-        Vector2 direction = (endPos - startPos).normalized;
+        Vector2 dir = (endPos - startPos).normalized;
 
-        float checkUp = Vector2.Dot(Vector2.up, direction);
-        float checkLeft = Vector2.Dot(Vector2.left, direction);
+        float checkUp = Vector2.Dot(Vector2.down, dir);
+        float checkLeft = Vector2.Dot(Vector2.left, dir);
 
         if (checkUp >= dirThreshold)
         {
-            Debug.Log("Swiped up!");
+            Debug.Log($"Swipe Up: {checkUp}");
             return;
         }
+
         if (checkUp <= -dirThreshold)
         {
-            Debug.Log("Swiped down!");
+            Debug.Log($"Swipe Down: {checkUp}");
             return;
         }
+
         if (checkLeft >= dirThreshold)
         {
-            Debug.Log("Swiped left!");
+            Debug.Log("Swipe right");
             return;
         }
+
         if (checkLeft <= -dirThreshold)
         {
-            Debug.Log("Swiped right!");
+            Debug.Log("Swipe leftd");
             return;
         }
-
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
 }
