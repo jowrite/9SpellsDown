@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f994ff75b3f33ae46af22e6462b4606a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/CrazyPattern.controller
+  uploadId: 708810

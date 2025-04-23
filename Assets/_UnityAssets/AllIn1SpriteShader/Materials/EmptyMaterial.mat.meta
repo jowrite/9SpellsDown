@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc460e5b1c6c0bd498b44195a0c3da99
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Materials/EmptyMaterial.mat
+  uploadId: 708810

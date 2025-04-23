@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6078fd4d3c5bd6f4087f8869458662dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Scripts/RandomSeed.cs
+  uploadId: 708810

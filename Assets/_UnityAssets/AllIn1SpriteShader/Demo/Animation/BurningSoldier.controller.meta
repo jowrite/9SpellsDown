@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5f3b82f530c24dd48961a1d428ed91d8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/BurningSoldier.controller
+  uploadId: 708810

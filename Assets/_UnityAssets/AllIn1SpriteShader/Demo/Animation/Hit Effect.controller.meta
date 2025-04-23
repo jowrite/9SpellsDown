@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c6e411a605ec50345a36bbab9d3cc722
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/Hit Effect.controller
+  uploadId: 708810

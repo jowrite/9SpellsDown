@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 264cca4d0f5bbb54eb9de18ca54d1506
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Scripts/All1CreateUnifiedOutline.cs
+  uploadId: 708810

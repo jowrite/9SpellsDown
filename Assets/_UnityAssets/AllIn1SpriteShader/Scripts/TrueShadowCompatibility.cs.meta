@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 279c59909b723da49b1f2cf62d25b06a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Scripts/TrueShadowCompatibility.cs
+  uploadId: 708810

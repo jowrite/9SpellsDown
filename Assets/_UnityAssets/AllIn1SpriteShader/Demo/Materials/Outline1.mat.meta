@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2fff2435ee99439438c463e2ce768283
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Materials/Outline1.mat
+  uploadId: 708810

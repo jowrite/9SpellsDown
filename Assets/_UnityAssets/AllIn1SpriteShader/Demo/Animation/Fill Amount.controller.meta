@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6078cf4809fc6174f90700135dcf328f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/Fill Amount.controller
+  uploadId: 708810

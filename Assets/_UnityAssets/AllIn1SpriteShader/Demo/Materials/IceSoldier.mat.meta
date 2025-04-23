@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d27799974f79b894196aeeef8bac53af
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Materials/IceSoldier.mat
+  uploadId: 708810

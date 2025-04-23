@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f3804424ee2f162418d9294faf7ba055
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Scripts/All1TextureOffsetOverTIme.cs
+  uploadId: 708810

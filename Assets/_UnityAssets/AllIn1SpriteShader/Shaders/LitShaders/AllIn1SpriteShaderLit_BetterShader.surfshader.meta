@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 325f1e8448719734a8a423b1dec4f03a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ed1b96e11e9064957833ce8c01da6f92, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Shaders/LitShaders/AllIn1SpriteShaderLit_BetterShader.surfshader
+  uploadId: 708810

@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4ef3964599ee48c4ea5a4ecf012ed949
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Scripts/DemoRandomColorSwap.cs
+  uploadId: 708810

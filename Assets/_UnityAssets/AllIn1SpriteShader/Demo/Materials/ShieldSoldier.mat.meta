@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a80b25e622f6c84aac445df7e206085
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Materials/ShieldSoldier.mat
+  uploadId: 708810

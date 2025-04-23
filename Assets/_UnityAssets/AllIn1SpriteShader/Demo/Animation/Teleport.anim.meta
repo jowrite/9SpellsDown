@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d55cd89bba47b6c4dbfe242daad46b9e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/Teleport.anim
+  uploadId: 708810

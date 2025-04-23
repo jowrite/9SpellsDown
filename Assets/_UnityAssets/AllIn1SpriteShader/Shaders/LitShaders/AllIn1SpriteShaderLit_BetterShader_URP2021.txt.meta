@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 69090a1deecc05842bc9e7d8d9f7ae6e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Shaders/LitShaders/AllIn1SpriteShaderLit_BetterShader_URP2021.txt
+  uploadId: 708810

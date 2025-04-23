@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cd0693e274874cc4f8ffd67a41ebe801
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Materials/FireSoldier.mat
+  uploadId: 708810

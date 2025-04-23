@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0b970b1c29876434a90d1b416c2a79da
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/TwistDisappear.anim
+  uploadId: 708810

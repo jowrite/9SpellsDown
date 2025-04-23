@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fee541ce475b5ae4c9d0ddad66e4d464
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 156513
+  packageName: All In 1 Sprite Shader
+  packageVersion: 4.25
+  assetPath: Assets/Plugins/AllIn1SpriteShader/Demo/Animation/RadialFillAmount.anim
+  uploadId: 708810
