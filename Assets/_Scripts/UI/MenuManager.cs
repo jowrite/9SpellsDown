@@ -10,8 +10,7 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
-    [SerializeField] private TextMeshProUGUI rulesButtonText;
-
+    [SerializeField] private TextMeshProUGUI ButtonText;
 
     //Panel visibility vars
     private bool isRulesPanelOpen = false;
@@ -37,12 +36,12 @@ public class MenuManager : MonoBehaviour
         if (isRulesPanelOpen)
         {
             anim.Play("ShowRulesPanel");
-            SetTextVisible(rulesButtonText, true);
+            SetTextVisible(ButtonText, true);
         }
         else
         {
             anim.Play("HideRulesPanel");
-            SetTextVisible(rulesButtonText, false);
+            SetTextVisible(ButtonText, false);
         }
     }
 
@@ -58,17 +57,32 @@ public class MenuManager : MonoBehaviour
         isScoresPanelOpen = !isScoresPanelOpen;
         //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
 
-        if (isScoresPanelOpen) anim.Play("ShowScoresPanel");
-
-        else anim.Play("HideScoresPanel");
+        if (isScoresPanelOpen)
+        {
+            anim.Play("ShowScores");
+            SetTextVisible(ButtonText, true);
+        }    
+        else
+        {
+            anim.Play("HideScores");
+            SetTextVisible(ButtonText, false);
+        }
     }
     public void ToggleUpgrades()
     {
         isUpgradesPanelOpen = !isUpgradesPanelOpen;
         //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
 
-        if (isUpgradesPanelOpen) anim.Play("ShowUpgradesPanel");
-        else anim.Play("HideUpgradesPanel");
+        if (isUpgradesPanelOpen)
+        {
+            anim.Play("ShowUpgrades");
+            SetTextVisible(ButtonText, true);
+        }
+        else
+        {
+            anim.Play("HideUpgrades");
+            SetTextVisible(ButtonText, false);
+        }
     }
 
     public void PlayGame()
