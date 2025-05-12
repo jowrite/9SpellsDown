@@ -42,7 +42,7 @@ public class RoundManager : MonoBehaviour
 
     private void DealCards()
     {
-        //Call the DeckManager here
+        DeckManager.dm.ShuffleAndDeal();
     }
 
     private void PromptWildMagic()
