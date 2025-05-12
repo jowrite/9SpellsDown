@@ -8,12 +8,10 @@ public class DeckManager : MonoBehaviour
 
     [Header("Deck Source")]
     public List<CardData> fullDeck;
-
     private List<CardData> currentDeck = new List<CardData>();
 
     [Header("Dealt Hands")]
     public List<CardData> wildMagicHand = new List<CardData>();
-
     public List<PlayerData> players;
 
     private void Awake()
