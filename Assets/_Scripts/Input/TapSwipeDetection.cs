@@ -9,7 +9,6 @@ public class TapSwipeDetection : MonoBehaviour
     InputManager im;
 
     //variables to control tapping and swiping
-    float distThreshold = 0.8f;
     float dirThreshold = 0.9f;
 
     float tapTimeout = 0.2f;
