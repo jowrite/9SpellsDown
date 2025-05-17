@@ -1,4 +1,8 @@
+using NUnit.Framework;
+using System;
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class TapSwipeDetection : MonoBehaviour
 {
@@ -16,13 +20,6 @@ public class TapSwipeDetection : MonoBehaviour
     Vector2 startPos;
     Vector2 endPos;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-
-    }
 
     private void OnEnable()
     {
@@ -46,8 +43,8 @@ public class TapSwipeDetection : MonoBehaviour
 
     private void TouchEnded()
     {
-        endTime = Time.time;
         endPos = im.PrimaryPosition();
+        endTime = Time.time;
         DetectInput();
     }
 
@@ -55,58 +52,81 @@ public class TapSwipeDetection : MonoBehaviour
     private void DetectInput()
     {
         float totalTime = endTime - startTime;
-        if (totalTime > swipeTimeout)
+        float distance = Vector2.Distance(startPos, endPos);
+
+        if (totalTime > swipeTimeout || distance < 0.1f)
         {
-            Debug.Log("Not a tap or swipe");
+            Debug.Log("Not a valid tap/swipe");
             return;
         }
 
         if (totalTime < tapTimeout)
         {
             Tap();
-            return;
         }
-
-        CheckSwipe();
+        else
+        {
+            CheckSwipe();
+        }
     }
 
     private void Tap()
     {
-        Debug.Log($"Tap at {im.PrimaryPosition()}");
+        Debug.Log($"Tap at {endPos}");
+        RaycastCard(endPos);
     }
 
     private void CheckSwipe()
     {
-        float distance = Vector2.Distance(startPos, endPos);
-        if (distance < distThreshold) return;
+        Vector2 direction = (endPos - startPos).normalized;
 
-        Vector2 dir = (endPos - startPos).normalized;
+        float vertical = Vector2.Dot(Vector2.up, direction);
+        float horizontal = Vector2.Dot(Vector2.right, direction);
 
-        float checkUp = Vector2.Dot(Vector2.down, dir);
-        float checkLeft = Vector2.Dot(Vector2.left, dir);
-
-        if (checkUp >= dirThreshold)
+        if(vertical >= dirThreshold)
         {
-            Debug.Log($"Swipe Up: {checkUp}");
-            return;
+            Debug.Log("Swipe Up");
         }
 
-        if (checkUp <= -dirThreshold)
+        else if (vertical <= -dirThreshold)
         {
-            Debug.Log($"Swipe Down: {checkUp}");
-            return;
+            Debug.Log("Swipe Down");
         }
 
-        if (checkLeft >= dirThreshold)
+        else if(horizontal >= dirThreshold)
         {
-            Debug.Log("Swipe right");
-            return;
+            Debug.Log("Swipe Right");
+        }
+        else if (horizontal <= -dirThreshold)
+        {
+            Debug.Log("Swipe Left");
         }
 
-        if (checkLeft <= -dirThreshold)
+    }
+
+    private void RaycastCard(Vector2 screenPosition)
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("Swipe leftd");
-            return;
+            PointerEventData pd = new PointerEventData(EventSystem.current)
+            {
+                position = screenPosition
+            };
+
+            List<RaycastResult> raycastResults = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(pd, raycastResults);
+
+            foreach (RaycastResult result in raycastResults)
+            {
+                if (result.gameObject.CompareTag("Card"))
+                {
+                    Debug.Log($"Tapped/Swiped on card: {result.gameObject.name}");
+                    //CardUI card = result.gameObject.GetComponent<CardUI>();
+                    //card.TryPlay(); **need to write this logic, set up CardUI.cs
+                    break;
+                }
+            }
         }
+
     }
 }

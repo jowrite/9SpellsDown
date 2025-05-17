@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 24123b2fcdc15c943bed44e0c6beeec7
+labels:
+- Tween
+- Tweening
+- Animation
+- HOTween
+- Paths
+- VisualScripting
+- VisualEditor
+- iTween
+- LeanTween
+- DFTween
+- Ease
+- Easing
+- Shake
+- Punch
+TextScriptImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 32416
+  packageName: DOTween Pro
+  packageVersion: 1.0.380
+  assetPath: Assets/Plugins/Demigiant/readme_DOTweenPro.txt
+  uploadId: 642067
