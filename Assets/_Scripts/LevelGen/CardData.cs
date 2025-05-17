@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public enum ElementType { Fire, Water, Earth, Air, None }
 

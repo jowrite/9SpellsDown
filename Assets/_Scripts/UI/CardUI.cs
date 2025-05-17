@@ -1,11 +1,14 @@
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.EventSystems;
 
-public class CardUI : MonoBehaviour
+public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public CardData cd;
+    private Vector3 startPos;
     public PlayerData owner;
+    private CanvasGroup canvasGroup;
 
     [Header("Anim Settings")]
     public float snapDuration = 0.3f;
@@ -14,6 +17,30 @@ public class CardUI : MonoBehaviour
     [Header("VFX/SFX")]
     public GameObject playVFX; //Particle system or prefab
     public AudioClip playSFX; //Card play sound
+
+
+    private void Start()
+    {
+        startPos = transform.position;
+        canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        canvasGroup.blocksRaycasts = false; // Disable raycasting to allow drag events to pass through
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = Input.mousePosition; //Move card to follow finger
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        canvasGroup.blocksRaycasts = true; // Re-enable raycasting
+        TryPlay(); //Check if the card was dropped in the drop zone
+    }
+
 
     public void TryPlay()
     {

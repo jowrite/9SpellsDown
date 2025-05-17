@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public int maxRounds = 13;
     private int totalCurseStart = 27;
 
-    public List<PlayerData> players; //Assumes this is populated in Inspector
+    public List<PlayerData> players; //Populate in Inspector
+    public List<PlayerHUD> playerHUDs; //Populate in Inspector
+
 
     private void Awake()
     {
@@ -43,6 +45,12 @@ public class GameManager : MonoBehaviour
 
             Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
 
+        }
+
+        //Update HUDs
+        foreach (PlayerHUD hud in playerHUDs)
+        {
+            hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
         }
 
         CheckMagicLaw();
@@ -96,6 +104,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void UpdateAllHUDs()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            playerHUDs[i].UpdateHUD(players[i]);
+            playerHUDs[i].SetLeaderHighlight(i == currentRound % players.Count);
+        }
+    }
 
 
 }
