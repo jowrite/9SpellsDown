@@ -1013,9 +1013,9 @@ GameObject:
   - component: {fileID: 566804718}
   - component: {fileID: 566804717}
   - component: {fileID: 566804716}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1169,7 @@ Transform:
   m_GameObject: {fileID: 566804715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7777778, y: -2.521, z: -0}
+  m_LocalPosition: {x: -0.08, y: -0.46, z: -0}
   m_LocalScale: {x: 2.6971004, y: 2.6971004, z: 2.6971004}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3217,5 +3217,5 @@ SceneRoots:
   - {fileID: 772404114}
   - {fileID: 87671573}
   - {fileID: 1117860126}
-  - {fileID: 566804720}
   - {fileID: 963669302}
+  - {fileID: 566804720}
