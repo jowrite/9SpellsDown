@@ -652,6 +652,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e614b6221a8d24eaa91e1e5b08eaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHandArea: {fileID: 1628708301}
+  fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
+  waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
+  earthCardPrefab: {fileID: 2034516746157526884, guid: 95cafdfcf88aeb44c9961687f1ff3fc8, type: 3}
+  airCardPrefab: {fileID: 6761568369217546326, guid: 1f1582a5890d4cb4787fa09bc907d38c, type: 3}
   fullDeck: []
   wildMagicHand: []
   players: []

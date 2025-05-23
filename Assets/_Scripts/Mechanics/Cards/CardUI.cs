@@ -10,6 +10,10 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public PlayerData owner;
     private CanvasGroup canvasGroup;
 
+    public TMPro.TextMeshProUGUI valueTop;
+    public TMPro.TextMeshProUGUI valueBottom;
+    public SpriteRenderer elementIcon;
+
     [Header("Anim Settings")]
     public float snapDuration = 0.3f;
     public Ease snapEase = Ease.OutCubic;
@@ -114,5 +118,12 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         //{
         //    AudioManager.am.PlaySFX(playSFX);
         //}
+    }
+
+    public void SetCardVisuals()
+    {
+        valueTop.text = cd.value.ToString();
+        valueBottom.text = cd.value.ToString();
+        //elementIcon.sprite = cd.elementIcon;
     }
 }
