@@ -5,6 +5,13 @@ using UnityEngine;
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager dm;
+    public Transform playerHandArea;
+
+    [Header ("Card Prefabs By Element")]
+    public GameObject fireCardPrefab;
+    public GameObject waterCardPrefab;
+    public GameObject earthCardPrefab;
+    public GameObject airCardPrefab;
 
     [Header("Deck Source")]
     public List<CardData> fullDeck;
@@ -69,6 +76,39 @@ public class DeckManager : MonoBehaviour
             Debug.LogWarning($"Loaded {fullDeck.Count} cards instead of 52. Check for missing assets.");
         else
             Debug.Log("Deck loaded successfully.");
+    }
+
+    public GameObject GetCardPrefab(ElementType element)
+    {
+        switch (element)
+        {
+            case ElementType.Fire:
+                return fireCardPrefab;
+            case ElementType.Water:
+                return waterCardPrefab;
+            case ElementType.Earth:
+                return earthCardPrefab;
+            case ElementType.Air:
+                return airCardPrefab;
+            default:
+                Debug.LogError("Invalid element type.");
+                return null;
+        }
+    }
+
+    public void DealCardToPlayer(PlayerData player, CardData card)
+    {
+        GameObject cardPrefab = GetCardPrefab(card.element);
+        if (cardPrefab != null) return;
+
+        GameObject cardGO = Instantiate(cardPrefab, playerHandArea);
+        CardUI cardUI = cardGO.GetComponent<CardUI>();
+
+        cardUI.cd = card;
+        cardUI.owner = player;
+
+        cardUI.SetCardVisuals();
+
     }
 
 }
