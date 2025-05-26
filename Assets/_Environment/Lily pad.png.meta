@@ -248,7 +248,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Lily pad_0: -6286449094582039484
+      Lily pad_1: 8115872471514675276
+      Lily pad_2: 7037066120845867668
+      Lily pad_3: 5113805678758742899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

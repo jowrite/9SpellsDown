@@ -873,7 +873,36 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TilesetNatures_0: 7602073412900486243
+      TilesetNatures_1: 3749713974235180640
+      TilesetNatures_10: 6237792602706393198
+      TilesetNatures_11: 8301528222196285147
+      TilesetNatures_12: 2735386195398473874
+      TilesetNatures_13: -1677261362989638358
+      TilesetNatures_14: 6643621782953519207
+      TilesetNatures_15: 706892742273842836
+      TilesetNatures_16: 1886667878727869712
+      TilesetNatures_17: 5626905323440913435
+      TilesetNatures_18: 3468143289526390144
+      TilesetNatures_19: -2144899140407502804
+      TilesetNatures_2: 1063345734033453465
+      TilesetNatures_20: -1449491474014840236
+      TilesetNatures_21: -9207016408849986659
+      TilesetNatures_22: 6194356352661679025
+      TilesetNatures_23: 1287600947856515931
+      TilesetNatures_24: -8729469406493684379
+      TilesetNatures_25: -100258781052614113
+      TilesetNatures_26: 5513225146439289599
+      TilesetNatures_27: -5362900294233068401
+      TilesetNatures_28: 7612464706617263793
+      TilesetNatures_3: -8094449242896737503
+      TilesetNatures_4: 8121348490694049500
+      TilesetNatures_5: 2516756680611658451
+      TilesetNatures_6: 7519365843639728928
+      TilesetNatures_7: -6284941138037153067
+      TilesetNatures_8: -1532887794042317281
+      TilesetNatures_9: -5402991593023456219
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

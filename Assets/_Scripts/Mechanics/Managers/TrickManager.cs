@@ -62,7 +62,7 @@ public class TrickManager : MonoBehaviour
         winner.spellCastsThisRound++;
 
         playedCards.Clear();
-        TurnManager.turn.StartNewTrick(winner);
+        GameManager.Instance.OnTrickResolved(winner);
         
     }
 
