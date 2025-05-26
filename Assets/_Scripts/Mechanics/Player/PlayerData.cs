@@ -14,11 +14,11 @@ public class PlayerData : MonoBehaviour
     {
         if (isHuman)
         {
-            //Enable UI to select card
+            //Wait for UI Input = handles by Card tap/swipe logic
         }
         else
         {
-            //AI logic to pick card & call TrickManager.instance.PlayCard(this, selectedCard);
+            AIController.Instance.TakeAITurn(this); // AI logic to play a card
         }
     }
 

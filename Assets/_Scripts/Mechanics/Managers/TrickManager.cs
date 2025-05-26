@@ -26,12 +26,15 @@ public class TrickManager : MonoBehaviour
         }
 
         playedCards.Add(new PlayedCard(player, card));
+        player.hand.Remove(card);
         Debug.Log($"{player.playerName} played {card.cardName}");
 
         if (playedCards.Count >= 3)
         {
             DetermineWinner();
         }
+
+        TurnManager.turn.EndPlayerTurn(); //End the current player's turn
     }
 
     private void DetermineWinner()
@@ -56,10 +59,11 @@ public class TrickManager : MonoBehaviour
         }
 
         Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
-
         winner.spellCastsThisRound++;
-        TurnManager.turn.StartNewTrick(winner);
+
         playedCards.Clear();
+        TurnManager.turn.StartNewTrick(winner);
+        
     }
 
     public void ResetTrick()
