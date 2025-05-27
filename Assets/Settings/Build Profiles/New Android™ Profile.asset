@@ -21,6 +21,8 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
+    m_path: Assets/_Scenes/Bootstrapper.unity
+  - m_enabled: 1
     m_path: Assets/_Scenes/MainMenu.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/GamePlay.unity

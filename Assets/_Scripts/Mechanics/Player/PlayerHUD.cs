@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHUD : MonoBehaviour
 {
-    public Text playerNameText;
-    public Text curseLevelText;
-    public Text spellCastText;
+    public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI curseLevelText;
+    public TextMeshProUGUI spellCastText;
 
     [SerializeField] private Image frame;
     [SerializeField] private Material defaultMaterial;

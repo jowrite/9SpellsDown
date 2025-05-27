@@ -65,10 +65,10 @@ public class GameManager : MonoBehaviour
         }
 
         //Update HUDs
-        foreach (PlayerHUD hud in playerHUDs)
-        {
-            hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
-        }
+        //foreach (PlayerHUD hud in playerHUDs)
+        //{
+        //    hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
+        //}
 
         CheckMagicLaw();
         currentRound++;
@@ -121,14 +121,14 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void UpdateAllHUDs()
-    {
-        for (int i = 0; i < players.Count; i++)
-        {
-            playerHUDs[i].UpdateHUD(players[i]);
-            playerHUDs[i].SetLeaderHighlight(i == currentRound % players.Count);
-        }
-    }
+    //private void UpdateAllHUDs()
+    //{
+    //    for (int i = 0; i < players.Count; i++)
+    //    {
+    //        playerHUDs[i].UpdateHUD(players[i]);
+    //        playerHUDs[i].SetLeaderHighlight(i == currentRound % players.Count);
+    //    }
+    //}
 
     //SIMULATE ROUNDS FOR TESTING
 

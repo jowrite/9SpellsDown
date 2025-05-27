@@ -35,6 +35,6 @@ public class Bootstrapper : Singleton<Bootstrapper>
         //start our game manager instance here
         //start our audio manager here
 
-        CheckScene("GamePlay");
+       // CheckScene("GamePlay");
     }
 }
