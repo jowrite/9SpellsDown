@@ -571,8 +571,8 @@ MonoBehaviour:
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
   frame: {fileID: 1832117755}
-  defaultMaterial: {fileID: 0}
-  leaderMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!223 &600619471
 Canvas:
   m_ObjectHideFlags: 0
@@ -1471,8 +1471,8 @@ MonoBehaviour:
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
   frame: {fileID: 1884893527}
-  defaultMaterial: {fileID: 0}
-  leaderMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!223 &1069547630
 Canvas:
   m_ObjectHideFlags: 0
@@ -2049,9 +2049,9 @@ MonoBehaviour:
   playerNameText: {fileID: 0}
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
-  frame: {fileID: 0}
-  defaultMaterial: {fileID: 0}
-  leaderMaterial: {fileID: 0}
+  frame: {fileID: 58912508}
+  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!223 &1834329603
 Canvas:
   m_ObjectHideFlags: 0
