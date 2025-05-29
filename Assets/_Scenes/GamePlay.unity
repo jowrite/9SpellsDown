@@ -571,7 +571,7 @@ MonoBehaviour:
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
   frame: {fileID: 1832117755}
-  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!223 &600619471
 Canvas:
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
   frame: {fileID: 1884893527}
-  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!223 &1069547630
 Canvas:
@@ -2321,7 +2321,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.03, y: 0.34}
   m_SizeDelta: {x: 1080, y: 2340}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807

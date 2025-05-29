@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
             int curseDelta = 4 - spellcasts;
             player.curseLevel += curseDelta;
-            player.curseLevel = Mathf.Clamp(player.curseLevel, 0, 9);
+            player.curseLevel = Mathf.Max(0, player.curseLevel);
 
             Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
 
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckMagicLaw()
     {
-        int expectedTotal = totalCurseStart - currentRound + 1;
+        int expectedTotal = totalCurseStart - currentRound;
         int actualTotal = players.Sum(p => p.curseLevel);
 
         if (actualTotal != expectedTotal)
