@@ -928,6 +928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHandArea: {fileID: 1628708301}
+  deckTransform: {fileID: 968205783}
+  targetSlots: {fileID: 1628708301}
   fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
   waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
   earthCardPrefab: {fileID: 2034516746157526884, guid: 95cafdfcf88aeb44c9961687f1ff3fc8, type: 3}
@@ -1738,9 +1740,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOrder:
-  - {fileID: 1182404123}
-  - {fileID: 1022000260}
-  - {fileID: 368885549}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   playerHUDs:
   - {fileID: 1834329602}
   - {fileID: 600619470}

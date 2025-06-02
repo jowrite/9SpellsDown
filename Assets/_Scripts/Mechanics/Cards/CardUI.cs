@@ -45,7 +45,6 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         TryPlay(); //Check if the card was dropped in the drop zone
     }
 
-
     public void TryPlay()
     {
         //Check if its the player's turn
@@ -124,6 +123,25 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         valueTop.text = cd.value.ToString();
         valueBottom.text = cd.value.ToString();
-        //elementIcon.sprite = cd.elementIcon;
+        elementIcon.sprite = cd.elementIcon;
+    }
+
+    public void AnimToPosition(Vector3 target, float delay = 0f, float duration = 0.4f)
+    {
+        RectTransform rt = GetComponent<RectTransform>();
+        CanvasGroup group = GetComponent<CanvasGroup>();
+
+        //Reset any previous tweening
+        rt.DOKill(true);
+        group.alpha = 0;
+        rt.localScale = Vector3.one * 0.5f; //Start small
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.PrependInterval(delay); //Deal in order
+        seq.Append(group.DOFade(1f, 0.2f)); //Fade in
+        seq.Join(rt.DOMove(target, duration).SetEase(Ease.OutCubic));
+        seq.Join(rt.DOScale(1f, duration).SetEase(Ease.OutBack)); //Scale up
+
     }
 }

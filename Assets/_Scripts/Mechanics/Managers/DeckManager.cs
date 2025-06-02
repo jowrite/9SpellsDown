@@ -1,11 +1,14 @@
 using NUnit.Framework;
 using System.Collections.Generic;   
 using UnityEngine;
+using DG.Tweening;
 
 public class DeckManager : MonoBehaviour
 {
     public static DeckManager dm;
     public Transform playerHandArea;
+    public Transform deckTransform; //For card animations
+    public Transform targetSlots; //Card destination slot after deal
 
     [Header ("Card Prefabs By Element")]
     public GameObject fireCardPrefab;
@@ -31,28 +34,31 @@ public class DeckManager : MonoBehaviour
 
     public void ShuffleAndDeal()
     {
-        //Clone and shuffle current deck
-        currentDeck = new List<CardData>(fullDeck);
+        // Clone and shuffle current deck
+        currentDeck = new(fullDeck);
         Shuffle(currentDeck);
 
-        //clear previous hands
+        // Clear previous hands
         foreach (PlayerData player in players)
         {
             player.hand.Clear();
         }
         wildMagicHand.Clear();
 
-        //Deal 13 cards per player
+        // Deal 13 cards per player
         for (int i = 0; i < 13; i++)
         {
             foreach (PlayerData player in players)
             {
-                player.hand.Add(currentDeck[0]);
+                CardData card = currentDeck[0];
+                player.hand.Add(card);
                 currentDeck.RemoveAt(0);
+
+                DealCardToPlayer(player, card);
             }
         }
 
-        //Remaing 13 cards go to wild magic hand
+        // Remaining 13 cards go to wild magic hand
         wildMagicHand.AddRange(currentDeck);
         Debug.Log("Shuffling complete. Wild Magic Hand is ready.");
     }
@@ -65,12 +71,17 @@ public class DeckManager : MonoBehaviour
             CardData temp = deck[i];
             deck[i] = deck[rand];
             deck[rand] = temp;
+            deckTransform.DOShakePosition(0.5f, 20f, 10, 90).SetEase(Ease.InOutSine); //Test visuals to see if it mimicks a shuffle
         }
     }
 
     private void LoadDeck()
     {
-        fullDeck = new List<CardData>(Resources.LoadAll<CardData>("Cards"));
+        fullDeck = new(Resources.LoadAll<CardData>("Cards"));
+
+        // Corrected the issue by separating the tweening logic from the Vector3 creation
+        deckTransform.DOLocalMove(new Vector3(Screen.width / 2, Screen.height / 2, 1f), 1f)
+            .SetEase(Ease.InOutSine);
 
         if (fullDeck.Count != 52)
             Debug.LogWarning($"Loaded {fullDeck.Count} cards instead of 52. Check for missing assets.");
@@ -99,15 +110,25 @@ public class DeckManager : MonoBehaviour
     public void DealCardToPlayer(PlayerData player, CardData card)
     {
         GameObject cardPrefab = GetCardPrefab(card.element);
-        if (cardPrefab != null) return;
+        if (cardPrefab != null)
+        {
+            Debug.LogError("Card prefab not found for element: " + card.element);
+            return;
+        }
 
-        GameObject cardGO = Instantiate(cardPrefab, playerHandArea);
+        GameObject cardGO = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, deckTransform.parent);
         CardUI cardUI = cardGO.GetComponent<CardUI>();
 
         cardUI.cd = card;
         cardUI.owner = player;
 
         cardUI.SetCardVisuals();
+
+        cardGO.transform.SetParent(playerHandArea, worldPositionStays: true);
+
+        //Animate to hand
+        Vector3 targetSlots = playerHandArea.position + new Vector3(Random.Range(-40f, 40f), 0f, 0f); //Random offset
+        cardUI.AnimToPosition(targetSlots, delay: 0.05f * player.hand.Count); //slight stagger
 
     }
 

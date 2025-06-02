@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     private int totalCurseStart = 27;
     private int tricksPlayed = 0;
 
+    private PlayerData trickLeader;
     public List<PlayerData> players; //Populate in Inspector
     public List<PlayerHUD> playerHUDs; //Populate in Inspector
     public List<PlayedCard> playedCards = new List<PlayedCard>();
+    public List<PlayerData> playerOrder => TurnManager.turn.playerOrder;
 
 
     private void Awake()
@@ -26,8 +28,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //StartRound();
-        SimulateRound();
+        StartRound();
+        //SimulateRound();
     }
 
     public void StartRound()
@@ -35,17 +37,19 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Round {currentRound} starts!");
         tricksPlayed = 0;
 
-        foreach (PlayerData player in players)
-        {
-            player.ResetRoundStats();
-        }
-
         DeckManager.dm.ShuffleAndDeal();
-        TurnManager.turn.playerOrder = new List<PlayerData>(players);
 
-        TurnManager.turn.StartNewTrick(players[0]); //Start with the first player in the list
+        //Don't reset player order every round
+        if (TurnManager.turn.playerOrder.Count == 0)
+            TurnManager.turn.playerOrder = new List<PlayerData>(players);
 
-        //Shuffle, deal, trick-taking logic will live here
+        //Start with whoever won the last trick
+        if (trickLeader != null)
+        {
+            TurnManager.turn.StartNewTrick(trickLeader);
+            Debug.Log($"Trick Leader: {playerOrder[0].playerName}");
+        }
+        
     }
 
     public void EndRound()
@@ -121,6 +125,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+
     //private void UpdateAllHUDs()
     //{
     //    for (int i = 0; i < players.Count; i++)
@@ -131,66 +136,111 @@ public class GameManager : MonoBehaviour
     //}
 
     //SIMULATE ROUNDS FOR TESTING
+    #region
+    //public void SimulateRound()
+    //{
+    //    Debug.Log("Simulating round with test cards...");
 
-    public void SimulateRound()
-    {
-        Debug.Log("Simulating round with test cards...");
+    //    DeckManager.dm.ShuffleAndDeal();
 
-        DeckManager.dm.ShuffleAndDeal();
+    //    foreach (PlayerData player in players)
+    //    {
+    //        player.spellCastsThisRound = 0;
+    //    }
 
-        foreach (PlayerData player in players)
-        {
-            player.spellCastsThisRound = 0;
-        }
+    //    for (int trick = 0; trick < 13; trick++)
+    //    {
+    //        SimulateTrick();
+    //    }
 
-        for (int trick = 0; trick < 13; trick++)
-        {
-            SimulateTrick();
-        }
+    //    EndRound();
+    //}
 
-        EndRound();
-    }
+    //private void SimulateTrick()
+    //{
+    //    Debug.Log("Simulating trick");
 
-    private void SimulateTrick()
-    {
-        Debug.Log("Simulating trick");
+    //    List<PlayedCard> trick = new List<PlayedCard>();
+    //    ElementType leadElement = ElementType.None;
 
-        List<PlayedCard> trick = new List<PlayedCard>();
+    //    foreach (PlayerData player in players)
+    //    {
 
-        foreach (PlayerData player in players)
-        {
-            //Simulate picking a random card from hand
-            if (player.hand.Count == 0) continue;
+    //        if (player.hand.Count == 0) 
+    //        {
+    //            Debug.LogWarning($"{player.playerName} has no cards left to play!");
+    //            continue;
+    //        }
 
-            CardData card = player.hand[Random.Range(0, player.hand.Count)];
-            player.hand.Remove(card);
+    //        CardData selectedCard = null;
 
-            trick.Add(new PlayedCard(player, card));
-            Debug.Log($"{player.playerName} plays {card.cardName}");
-        }
+    //        //First player sets the lead element
+    //        if (leadElement == ElementType.None)
+    //        {
+    //            selectedCard = player.hand[Random.Range(0, player.hand.Count)];
+    //            leadElement = selectedCard.element;
+    //        }
+    //        else
+    //        {
+    //            //Subsequent players must follow suit if possible
+    //            List<CardData> followElement = player.hand.Where(c => c.element == leadElement).ToList();
 
-        //Determine trick winner
-        ElementType leadElement = trick[0].card.element;
-        CardData bestCard = trick[0].card;
-        PlayerData winner = trick[0].player;
+    //            if (followElement.Count > 0)
+    //            {
+    //                int highestInTrick = trick
+    //                    .Where(playedCards => playedCards.card.element == leadElement)
+    //                    .Max(playedCards => playedCards.card.value);
 
-        for (int i = 1; i < trick.Count; i++)
-        {
-            CardData card = trick[i].card;
-            if (card.element == leadElement && card.value > bestCard.value)
-            {
-                bestCard = card;
-                winner = trick[i].player;
-            }
-        }
+    //                List<CardData> betterCards = followElement
+    //                    .Where(c => c.value > highestInTrick)
+    //                    .OrderBy(c => c.value) //prefer lowest winning card
+    //                    .ToList();
 
-        winner.spellCastsThisRound++;
-        Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
+    //                if(betterCards.Count > 0)
+    //                {
+    //                    selectedCard = betterCards[0];
+    //                }
+    //                else
+    //                {
+    //                    //Can't win, play lowest card in element
+    //                    selectedCard = followElement.OrderBy(c => c.value).First();
+    //                }
+    //            }
+    //            else
+    //            {
+    //                //No cards in matching suit, discard lowest card
+    //                selectedCard = player.hand.OrderBy(c => c.value).First();
+    //            }
+    //        }
 
-    }
+    //        player.hand.Remove(selectedCard);
+    //        trick.Add(new PlayedCard(player, selectedCard));
+    //        Debug.Log($"{player.playerName} plays {selectedCard.cardName}");
+    //    }
 
+    //    //Determine trick winner       
+    //    CardData bestCard = trick[0].card;
+    //    PlayerData winner = trick[0].player;
+
+    //    for (int i = 1; i < trick.Count; i++)
+    //    {
+    //        CardData card = trick[i].card;
+    //        if (card.element == leadElement && card.value > bestCard.value)
+    //        {
+    //            bestCard = card;
+    //            winner = trick[i].player;
+    //        }
+    //    }
+
+    //    winner.spellCastsThisRound++;
+    //    Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
+
+    //}
+    #endregion
+    
     public void OnTrickResolved(PlayerData winner)
     {
+        trickLeader = winner; //This should carry into next round
         tricksPlayed++;
 
         if (tricksPlayed >= 13)

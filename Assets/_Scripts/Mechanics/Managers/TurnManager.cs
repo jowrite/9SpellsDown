@@ -19,38 +19,13 @@ public class TurnManager : MonoBehaviour
     {
         //Reorder the player list so winner goes first
         ReorderPlayerList(winner);
-
+        
         //Highlight the new leader visually
         UpdateLeaderHighlight (playerOrder[0]);
 
         currentPlayerIndex = 0;
         TrickManager.tm.ResetTrick();
         StartPlayerTurn();
-    }
-
-    public void StartPlayerTurn()
-    {
-        PlayerData currentPlayer = playerOrder[currentPlayerIndex];
-        Debug.Log($"{currentPlayer.playerName}'s turn!");
-
-        currentPlayer.TakeTurn(); //Calls player or AI logic
-    }
-
-    public void EndPlayerTurn()
-    {
-        currentPlayerIndex++;
-
-        if (currentPlayerIndex < playerOrder.Count)
-        {
-            StartPlayerTurn();
-        }
-        //Wait for TrickManager to resolve when all 3 cards are played
-        else
-        {
-            currentPlayerIndex = 0;
-            TrickManager.tm.ResetTrick();
-            StartNewTrick(playerOrder[0]); //Start a new trick with the winner of the last one
-        }
     }
 
     //Ensures the winner is first in the next player order
@@ -72,6 +47,27 @@ public class TurnManager : MonoBehaviour
             }
         }
     }
+
+    public void StartPlayerTurn()
+    {
+        PlayerData currentPlayer = playerOrder[currentPlayerIndex];
+        Debug.Log($"{currentPlayer.playerName}'s turn!");
+
+        currentPlayer.TakeTurn(); //Calls player or AI logic
+    }
+
+    public void EndPlayerTurn()
+    {
+        currentPlayerIndex++;
+
+        if (currentPlayerIndex < playerOrder.Count)
+        {
+            StartPlayerTurn();
+        }
+        //TrickManager handles resolution
+    }
+
+    
 
 
     //Visual shader highlight for the leader

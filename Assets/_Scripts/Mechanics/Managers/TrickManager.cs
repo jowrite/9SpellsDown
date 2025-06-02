@@ -33,8 +33,10 @@ public class TrickManager : MonoBehaviour
         {
             DetermineWinner();
         }
-
-        TurnManager.turn.EndPlayerTurn(); //End the current player's turn
+        else
+        { 
+            TurnManager.turn.EndPlayerTurn(); //End the current player's turn
+        }
     }
 
     private void DetermineWinner()
@@ -70,6 +72,19 @@ public class TrickManager : MonoBehaviour
     {
         playedCards.Clear();
         leadElement = ElementType.None;
+    }
+
+    public int GetHighestValueInTrick(ElementType element)
+    {
+        int highest = 0;
+        foreach (var played in playedCards)
+        {
+            if (played.card.element == element && played.card.value > highest)
+            {
+                highest = played.card.value;
+            }
+        }
+        return highest;
     }
 
     [System.Serializable]
