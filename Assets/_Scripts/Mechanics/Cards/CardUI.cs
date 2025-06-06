@@ -10,8 +10,8 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public PlayerData owner;
     private CanvasGroup canvasGroup;
 
-    public TMPro.TextMeshProUGUI valueTop;
-    public TMPro.TextMeshProUGUI valueBottom;
+    public TMPro.TextMeshPro valueTop;
+    public TMPro.TextMeshPro valueBottom;
     public SpriteRenderer elementIcon;
 
     [Header("Anim Settings")]
@@ -92,11 +92,14 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         //Fade & destroy after play
         snapSeq.OnComplete(() =>
         {
-            if (group) group.DOFade(0f, 0.2f).OnComplete(() =>
-            {
-               zone.OnCardPlayed(this);
-                Destroy(gameObject);
-            });
+            if (group) 
+            {  
+                group.DOFade(0f, 0.2f).OnComplete(() =>
+                {
+                    zone.OnCardPlayed(this);
+                    Destroy(gameObject);
+                });
+            }
             else
             {
                 zone.OnCardPlayed(this);
@@ -121,9 +124,26 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void SetCardVisuals()
     {
-        valueTop.text = cd.value.ToString();
-        valueBottom.text = cd.value.ToString();
-        elementIcon.sprite = cd.elementIcon;
+        if (cd == null)
+        {
+            Debug.LogError("CardData is null!");
+            return;
+        }
+
+        if (valueTop != null)
+            valueTop.text = cd.value.ToString();
+        else
+            Debug.LogError("valueTop TextMeshPro is not assigned!");
+
+        if (valueBottom != null)
+            valueBottom.text = cd.value.ToString();
+        else
+            Debug.LogError("valueBottom TextMeshPro is not assigned!");
+
+        if (elementIcon != null && cd.elementIcon != null)
+            elementIcon.sprite = cd.elementIcon;
+        else
+            Debug.LogError("elementIcon or CardData.elementIcon is missing!");
     }
 
     public void AnimToPosition(Vector3 target, float delay = 0f, float duration = 0.4f)

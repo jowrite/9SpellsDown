@@ -15,3 +15,4 @@ MonoBehaviour:
   cardName: 8 of Air
   element: 3
   value: 8
+  elementIcon: {fileID: 2451652252212011429, guid: f45d95e1f23db18409e893f75d55b1bb, type: 3}

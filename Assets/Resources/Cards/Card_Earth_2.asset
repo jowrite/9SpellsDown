@@ -15,3 +15,4 @@ MonoBehaviour:
   cardName: 2 of Earth
   element: 2
   value: 2
+  elementIcon: {fileID: -8893492665405103501, guid: 7cd7f4061bff9564db858ccea8b25dd1, type: 3}

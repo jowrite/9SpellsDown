@@ -15,3 +15,4 @@ MonoBehaviour:
   cardName: 4 of Water
   element: 1
   value: 4
+  elementIcon: {fileID: 1623647345179350462, guid: f45d95e1f23db18409e893f75d55b1bb, type: 3}

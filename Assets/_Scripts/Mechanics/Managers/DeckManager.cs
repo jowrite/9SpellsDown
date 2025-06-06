@@ -34,6 +34,12 @@ public class DeckManager : MonoBehaviour
 
     public void ShuffleAndDeal()
     {
+        if (dm == null)
+        {
+            Debug.LogError("DeckManager instance is not initialized.");
+            return;
+        }
+
         // Clone and shuffle current deck
         currentDeck = new(fullDeck);
         Shuffle(currentDeck);
@@ -91,6 +97,12 @@ public class DeckManager : MonoBehaviour
 
     public GameObject GetCardPrefab(ElementType element)
     {
+        Debug.Log($"Looking for prefab of: {element} | " +
+             $"Fire: {fireCardPrefab != null} | " +
+             $"Water: {waterCardPrefab != null} | " +
+             $"Earth: {earthCardPrefab != null} | " +
+             $"Air: {airCardPrefab != null}");
+        
         switch (element)
         {
             case ElementType.Fire:
@@ -109,10 +121,12 @@ public class DeckManager : MonoBehaviour
 
     public void DealCardToPlayer(PlayerData player, CardData card)
     {
+        Debug.Log($"Dealing card: {card.name} | Element: {card.element}");
+
         GameObject cardPrefab = GetCardPrefab(card.element);
-        if (cardPrefab != null)
+        if (cardPrefab == null)
         {
-            Debug.LogError("Card prefab not found for element: " + card.element);
+            Debug.LogError($"Card prefab not found for element {card.element}");
             return;
         }
 
