@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 using static TrickManager;
 
 public class GameManager : MonoBehaviour
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartRound();
+        DOTween.Init(); //Ensures DOTween is initialized
         //SimulateRound();
     }
 
