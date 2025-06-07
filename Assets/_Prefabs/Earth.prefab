@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1087.1, y: 2358.5}
+  m_AnchoredPosition: {x: 6.7, y: 17.5}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5505803587680974314
@@ -217,7 +217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -540, y: -1170}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7527831831084445678
@@ -237,6 +237,7 @@ MonoBehaviour:
   valueTop: {fileID: 5152145563416660485}
   valueBottom: {fileID: 8630880781608633917}
   elementIcon: {fileID: 5691333199854762322}
+  deckTransform: {fileID: 0}
   snapDuration: 0.3
   snapEase: 9
   playVFX: {fileID: 0}
@@ -273,7 +274,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 887750817
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &2442790755682244169
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1456922401589688124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,7 +351,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1068.8, y: 2315.7}
+  m_AnchoredPosition: {x: -10.2, y: -23.9}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5725340255235694129
@@ -518,7 +519,7 @@ Transform:
   m_GameObject: {fileID: 5182869400582417046}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1080, y: 2340, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 80.456474, y: 108.13818, z: 87.43372}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -605,7 +606,7 @@ Transform:
   m_GameObject: {fileID: 7148544175249352960}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1080.4, y: 2340, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 145.83879, y: 217.35931, z: 156.3564}
   m_ConstrainProportionsScale: 0
   m_Children: []

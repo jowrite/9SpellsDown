@@ -131,6 +131,10 @@ public class DeckManager : MonoBehaviour
         }
 
         GameObject cardGO = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, deckTransform.parent);
+        //Debug: add visibility check
+        cardGO.transform.localScale = Vector3.one; //Override any tween starting values
+        Debug.Log($"Card spawned at: {cardGO.transform.position} | Active: {cardGO.activeInHierarchy}");
+
         CardUI cardUI = cardGO.GetComponent<CardUI>();
 
         cardUI.cd = card;

@@ -13,6 +13,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public TMPro.TextMeshPro valueTop;
     public TMPro.TextMeshPro valueBottom;
     public SpriteRenderer elementIcon;
+    public RectTransform deckTransform; //Where the card starts in the deck
 
     [Header("Anim Settings")]
     public float snapDuration = 0.3f;
@@ -27,6 +28,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         startPos = transform.position;
         canvasGroup = GetComponent<CanvasGroup>();
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -148,6 +150,12 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void AnimToPosition(Vector3 target, float delay = 0f, float duration = 0.4f)
     {
+        Debug.Log($"Animating from: {transform.position} to {target}");
+
+        //Force initial visibility
+        transform.position = deckTransform.position; //Start at deck position
+        gameObject.SetActive(true);
+
         RectTransform rt = GetComponent<RectTransform>();
         CanvasGroup group = GetComponent<CanvasGroup>();
 
