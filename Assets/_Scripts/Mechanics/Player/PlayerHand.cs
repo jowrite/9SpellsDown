@@ -6,7 +6,12 @@ public class PlayerHand : MonoBehaviour
 {
     public Transform handArea;
     public PlayerData playerData;
-    public GameObject cardPrefab;
+
+    [Header("Card Prefabs by Element")]
+    public GameObject fireCardPrefab;
+    public GameObject waterCardPrefab;
+    public GameObject earthCardPrefab;
+    public GameObject airCardPrefab;
 
     public void PopulateHand(List<CardData> hand)
     {
@@ -14,7 +19,14 @@ public class PlayerHand : MonoBehaviour
 
         foreach (CardData card in hand)
         {
-            GameObject cardGO = Instantiate(cardPrefab, handArea);
+            
+            GameObject prefab = GetCardPrefab(card.element);
+            if (prefab == null)
+            {
+                Debug.LogError($"No prefab found for element: {card.element}");
+                continue;
+            }
+            GameObject cardGO = Instantiate(prefab, handArea);
             CardUI ui = cardGO.GetComponent<CardUI>();
             ui.cd = card;
             ui.owner = playerData;
@@ -40,5 +52,23 @@ public class PlayerHand : MonoBehaviour
         });
 
         PopulateHand(playerData.hand);
+    }
+
+    private GameObject GetCardPrefab(ElementType element)
+    {
+        switch (element)
+        {
+            case ElementType.Fire:
+                return fireCardPrefab;
+            case ElementType.Water:
+                return waterCardPrefab;
+            case ElementType.Earth:
+                return earthCardPrefab;
+            case ElementType.Air:
+                return airCardPrefab;
+            default:
+                Debug.LogError("Unknown element type: " + element);
+                return null;
+        }
     }
 }

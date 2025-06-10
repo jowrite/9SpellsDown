@@ -13,7 +13,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public TMPro.TextMeshPro valueTop;
     public TMPro.TextMeshPro valueBottom;
     public SpriteRenderer elementIcon;
-    public RectTransform deckTransform; //Where the card starts in the deck
+    public Transform deckTransform; //Where the card starts in the deck
 
     [Header("Anim Settings")]
     public float snapDuration = 0.3f;
