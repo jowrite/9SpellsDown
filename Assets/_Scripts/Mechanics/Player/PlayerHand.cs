@@ -27,6 +27,8 @@ public class PlayerHand : MonoBehaviour
                 continue;
             }
             GameObject cardGO = Instantiate(prefab, handArea);
+            cardGO.transform.SetParent(handArea, worldPositionStays: false); // Set parent without world position change
+            cardGO.transform.localScale = Vector3.one; // Reset scale
             CardUI ui = cardGO.GetComponent<CardUI>();
             ui.cd = card;
             ui.owner = playerData;
