@@ -8,7 +8,6 @@ public class DeckManager : MonoBehaviour
     public static DeckManager dm;
     public Transform playerHandArea;
     public Transform deckTransform; //For card animations
-    public Transform targetSlots; //Card destination slot after deal
 
     [Header ("Card Prefabs By Element")]
     public GameObject fireCardPrefab;
