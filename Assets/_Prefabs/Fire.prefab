@@ -628,6 +628,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5015273285338277885}
   - component: {fileID: 5114551528321108546}
+  - component: {fileID: 4532129388416773815}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -644,7 +645,7 @@ RectTransform:
   m_GameObject: {fileID: 8534900548895795755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4931298426679761428}
@@ -682,3 +683,15 @@ MonoBehaviour:
   snapEase: 9
   playVFX: {fileID: 0}
   playSFX: {fileID: 0}
+--- !u!225 &4532129388416773815
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8534900548895795755}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

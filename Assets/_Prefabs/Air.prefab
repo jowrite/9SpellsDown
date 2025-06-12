@@ -308,6 +308,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361094278454061927}
   - component: {fileID: 3989503704518850270}
+  - component: {fileID: 1873903989802835023}
   m_Layer: 0
   m_Name: Air
   m_TagString: Untagged
@@ -324,7 +325,7 @@ RectTransform:
   m_GameObject: {fileID: 6761568369217546326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8463793284595472939}
@@ -362,6 +363,18 @@ MonoBehaviour:
   snapEase: 9
   playVFX: {fileID: 0}
   playSFX: {fileID: 0}
+--- !u!225 &1873903989802835023
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6761568369217546326}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6972540166831213233
 GameObject:
   m_ObjectHideFlags: 0
