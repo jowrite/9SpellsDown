@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -236,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 368885548}
   - component: {fileID: 368885549}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -535,7 +535,7 @@ GameObject:
   - component: {fileID: 600619469}
   - component: {fileID: 600619468}
   - component: {fileID: 600619470}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WitchAI1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 641347156}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Players
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHandArea: {fileID: 1628708301}
+  hiddenZone: {fileID: 0}
   deckTransform: {fileID: 968205783}
   fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
   waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
@@ -1113,6 +1114,41 @@ MonoBehaviour:
   aiPlayers:
   - {fileID: 1022000260}
   - {fileID: 368885549}
+--- !u!1 &971033775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971033776}
+  m_Layer: 5
+  m_Name: HiddenCards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &971033776
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971033775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2138481775}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 2042}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &986099446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1160,7 @@ GameObject:
   - component: {fileID: 986099447}
   - component: {fileID: 986099449}
   - component: {fileID: 986099448}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1296,7 @@ GameObject:
   - component: {fileID: 988324716}
   - component: {fileID: 988324718}
   - component: {fileID: 988324717}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1395,7 +1431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1022000259}
   - component: {fileID: 1022000260}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1446,7 +1482,7 @@ GameObject:
   - component: {fileID: 1069547628}
   - component: {fileID: 1069547629}
   - component: {fileID: 1069547627}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: WitchAI2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1736,7 +1772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1182404122}
   - component: {fileID: 1182404123}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2135,7 +2171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2172,7 +2208,7 @@ GameObject:
   - component: {fileID: 1834329600}
   - component: {fileID: 1834329601}
   - component: {fileID: 1834329602}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlayerHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2270,7 +2306,7 @@ MonoBehaviour:
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}
   frame: {fileID: 58912508}
-  defaultMaterial: {fileID: 2100000, guid: a186aad8f5f9dd04d910c7e3174834c0, type: 2}
+  defaultMaterial: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   leaderMaterial: {fileID: 2100000, guid: 692048f9f2a443e459c0518820d82521, type: 2}
 --- !u!1 &1836535651
 GameObject:
@@ -2327,7 +2363,7 @@ GameObject:
   - component: {fileID: 1884893526}
   - component: {fileID: 1884893528}
   - component: {fileID: 1884893527}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2365,7 +2401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 1c2c3a51f881cb443906a57116cf56fe, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2466,6 +2502,7 @@ RectTransform:
   m_Children:
   - {fileID: 1092651249}
   - {fileID: 1628708301}
+  - {fileID: 971033776}
   m_Father: {fileID: 1781512131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

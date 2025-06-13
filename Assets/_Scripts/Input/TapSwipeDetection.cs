@@ -103,9 +103,12 @@ public class TapSwipeDetection : MonoBehaviour
 
     }
 
+    //Method for playing a card when tapped/swiped
     private void RaycastCard(Vector2 screenPosition)
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        int fingerId = Bootstrapper.Instance.InputManager.LastFingerId;
+
+        if (EventSystem.current.IsPointerOverGameObject(fingerId))
         {
             PointerEventData pd = new PointerEventData(EventSystem.current)
             {
@@ -120,12 +123,15 @@ public class TapSwipeDetection : MonoBehaviour
                 if (result.gameObject.CompareTag("Card"))
                 {
                     Debug.Log($"Tapped/Swiped on card: {result.gameObject.name}");
-                    //CardUI card = result.gameObject.GetComponent<CardUI>();
-                    //card.TryPlay(); **need to write this logic, set up CardUI.cs
+                    CardUI card = result.gameObject.GetComponent<CardUI>();
+                    if(card != null) card.TryPlay();
                     break;
                 }
             }
         }
-
+        else
+        {
+            Debug.Log("Tapped outside UI - ignored");
+        }
     }
 }

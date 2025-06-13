@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
@@ -7,6 +8,11 @@ public class InputManager : MonoBehaviour
 
     public event System.Action OnTouchBegin;
     public event System.Action OnTouchEnd;
+
+    //Recent active touch ID for IsPointerOver checks
+    public int LastFingerId { get; private set; } = -1;
+    public Vector2 LastTouchPos { get; private set; }
+
 
     private void Start()
     {
@@ -18,7 +24,19 @@ public class InputManager : MonoBehaviour
         input = new PlayerControls();
 
         input.Enable();
-        input.Base.Touch.started += ctx => OnTouchBegin?.Invoke();
+
+        input.Base.Touch.started += ctx =>
+        {
+            if (Touchscreen.current != null && Touchscreen.current.touches.Count > 0)
+            {
+                var touch = Touchscreen.current.touches[0];
+                LastFingerId = touch.touchId.ReadValue();
+                LastTouchPos = touch.position.ReadValue();
+            }
+
+            OnTouchBegin?.Invoke();
+        };
+
         input.Base.Touch.canceled += ctx => OnTouchEnd?.Invoke();
     }
 

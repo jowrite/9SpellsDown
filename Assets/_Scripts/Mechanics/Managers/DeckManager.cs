@@ -7,6 +7,7 @@ public class DeckManager : MonoBehaviour
 {
     public static DeckManager dm;
     public Transform playerHandArea;
+    public Transform hiddenZone; //For AI player cards that are not visible to human players
     public Transform deckTransform; //For card animations
 
     [Header ("Card Prefabs By Element")]
@@ -135,14 +136,20 @@ public class DeckManager : MonoBehaviour
         Debug.Log($"Card spawned at: {cardGO.transform.position} | Active: {cardGO.activeInHierarchy}");
 
         CardUI cardUI = cardGO.GetComponent<CardUI>();
-
         cardUI.cd = card;
         cardUI.owner = player;
-
         cardUI.SetCardVisuals();
 
-        cardGO.transform.SetParent(playerHandArea, worldPositionStays: true);
-
+        // Set the card's parent based on player type - should not show AI cards in human player's hand
+        if (player.isHuman)
+        {
+            cardGO.transform.SetParent(playerHandArea, worldPositionStays: true);
+        }
+        else
+        {
+            cardGO.transform.SetParent(hiddenZone, worldPositionStays: true);
+        }
+        
         //Animate to hand
         Vector2 randomOffset = new Vector2(Random.Range(-200f, 200f), 0f);
         cardUI.AnimToPosition(randomOffset, delay: 0.05f * player.hand.Count);
