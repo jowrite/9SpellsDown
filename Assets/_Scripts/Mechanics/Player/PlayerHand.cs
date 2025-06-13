@@ -40,7 +40,7 @@ public class PlayerHand : MonoBehaviour
 
     public void FanOutCards()
     {
-        float spacing = 90f; // Adjust spacing between cards
+        float spacing = 200f; // Adjust spacing between cards
         float startX = -((playerData.hand.Count - 1) * spacing) / 2f; // Center the fan
 
         for (int i = 0; i < handArea.childCount; i++)
@@ -48,11 +48,11 @@ public class PlayerHand : MonoBehaviour
            RectTransform card = handArea.GetChild(i).GetComponent<RectTransform>();
             if (card != null) continue;
 
-            Vector3 targetPos = new Vector3(startX + 1 * spacing, 0f, 0f);
-            float delay = i * 0.2f; //Delay for each card to create a fan effect
+            Vector2 targetPos = new Vector2(startX + 2 * spacing, 0f);
+            float delay = i * 0.03f; //Delay for each card to create a fan effect
 
             card.DOKill(); //prevent overlapping tweens
-            card.DOLocalMove(targetPos, 0.4f)
+            card.DOAnchorPos(targetPos, 2f)
                 .SetEase(Ease.OutCubic)
                 .SetDelay(delay);
         }

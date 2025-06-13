@@ -144,9 +144,9 @@ public class DeckManager : MonoBehaviour
         cardGO.transform.SetParent(playerHandArea, worldPositionStays: true);
 
         //Animate to hand
-        Vector3 targetSlots = playerHandArea.position + new Vector3(Random.Range(-40f, 40f), 0f, 0f); //Random offset
-        cardUI.AnimToPosition(targetSlots, delay: 0.05f * player.hand.Count); //slight stagger
-
+        Vector2 randomOffset = new Vector2(Random.Range(-200f, 200f), 0f);
+        cardUI.AnimToPosition(randomOffset, delay: 0.05f * player.hand.Count);
+       
     }
 
 }

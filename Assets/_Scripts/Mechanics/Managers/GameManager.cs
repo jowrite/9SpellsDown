@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
 
         DeckManager.dm.ShuffleAndDeal();
 
+        Object.FindFirstObjectByType<PlayerHand>().FanOutCards();
+
         //Don't reset player order every round
         if (TurnManager.turn.playerOrder.Count == 0)
             TurnManager.turn.playerOrder = new List<PlayerData>(players);

@@ -219,12 +219,12 @@ Transform:
   m_GameObject: {fileID: 313142597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -540, y: -1170, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 0.0042735045, y: 0.0042735045, z: 0.0042735045}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 454110455}
-  m_Father: {fileID: 1469029617}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &368885547
 GameObject:
@@ -252,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 368885547}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -191, y: -426, z: 0}
+  m_LocalPosition: {x: -191, y: -506.99997, z: 0}
   m_LocalScale: {x: 0.64643, y: 0.64643, z: 0.64643}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -312,7 +312,7 @@ Camera:
   m_GameObject: {fileID: 454110452}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.4494482, g: 0.48290563, b: 0.9433962, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -363,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 454110452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 164, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,7 +384,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 1
+  m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -1003,7 +1003,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHandArea: {fileID: 1628708301}
   deckTransform: {fileID: 968205783}
-  targetSlots: {fileID: 0}
   fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
   waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
   earthCardPrefab: {fileID: 2034516746157526884, guid: 95cafdfcf88aeb44c9961687f1ff3fc8, type: 3}
@@ -1412,7 +1411,7 @@ Transform:
   m_GameObject: {fileID: 1022000258}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -889, y: -420, z: 0}
+  m_LocalPosition: {x: -889, y: -501, z: 0}
   m_LocalScale: {x: 0.58312553, y: 0.58312553, z: 0.58312553}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1689,7 +1688,7 @@ Transform:
   m_GameObject: {fileID: 1092651245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37, y: 71.01123, z: 0}
+  m_LocalPosition: {x: 7, y: 160, z: 0}
   m_LocalScale: {x: 813.29266, y: 732.11, z: 259.94177}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1753,7 +1752,7 @@ Transform:
   m_GameObject: {fileID: 1182404121}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -552, y: -2219, z: 0}
+  m_LocalPosition: {x: -574, y: -2238, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1811,7 +1810,6 @@ RectTransform:
   - {fileID: 641347156}
   - {fileID: 1781512131}
   - {fileID: 1779938986}
-  - {fileID: 313142598}
   - {fileID: 487870043}
   - {fileID: 939354638}
   m_Father: {fileID: 1144293840}
@@ -2352,7 +2350,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1884893527
@@ -2479,4 +2477,5 @@ RectTransform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 313142598}
   - {fileID: 1144293840}

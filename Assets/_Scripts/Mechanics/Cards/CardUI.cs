@@ -147,9 +147,9 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             Debug.LogError("elementIcon or CardData.elementIcon is missing!");
     }
 
-    public void AnimToPosition(Vector3 target, float delay = 0f, float duration = 0.4f)
+    public void AnimToPosition(Vector2 anchoredTarget, float delay = 0f, float duration = 0.4f)
     {
-        Debug.Log($"Animating from: {transform.position} to {target}");
+        Debug.Log($"Animating from: {transform.position} to {anchoredTarget}");
 
         //Force initial visibility
         gameObject.SetActive(true);
@@ -166,7 +166,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
         seq.PrependInterval(delay); //Deal in order
         seq.Append(group.DOFade(1f, 0.2f)); //Fade in
-        seq.Join(rt.DOMove(target, duration).SetEase(Ease.OutCubic));
+        seq.Join(rt.DOAnchorPos(anchoredTarget, duration).SetEase(Ease.OutCubic)); //anchored UI move
         seq.Join(rt.DOScale(1f, duration).SetEase(Ease.OutBack)); //Scale up
 
     }
