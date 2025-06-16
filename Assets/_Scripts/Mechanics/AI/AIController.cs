@@ -31,7 +31,30 @@ public class AIController : MonoBehaviour
         CardData chosen = ChooseCard(ai.hand);
         ai.hand.Remove(chosen);
 
-        TrickManager.tm.PlayCard(ai, chosen);
+        // Instantiate AI card visual when played
+        GameObject cardPrefab = DeckManager.dm.GetCardPrefab(chosen.element);
+        if (cardPrefab == null)
+        {
+            Debug.LogError($"Card prefab not found for element {chosen.element}");
+            yield break;
+        }
+
+        GameObject cardGO = Instantiate(
+            cardPrefab,
+            DeckManager.dm.hiddenZone.position,
+            Quaternion.identity,
+            TrickManager.tm.transform
+        );
+
+        CardUI cardUI = cardGO.GetComponent<CardUI>();
+        cardUI.cd = chosen;
+        cardUI.owner = ai;
+        cardUI.SetCardVisuals();
+
+        //Anim to play area
+        //cardUI.AnimToPlayArea();
+
+        TrickManager.tm.PlayCard(ai, chosen, cardGO);
     }
 
     private CardData ChooseCard(List<CardData> hand)

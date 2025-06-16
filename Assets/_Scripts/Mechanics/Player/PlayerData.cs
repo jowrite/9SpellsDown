@@ -8,6 +8,9 @@ public class PlayerData : MonoBehaviour
     public int curseLevel = 9;
     public int spellCastsThisRound;
 
+    public bool isHuman = false; // Set this based on player type (human or AI)
+    public bool isAI = false; // Set this based on player type (human or AI)
+
     public List<CardData> hand = new List<CardData>();
 
     public void TakeTurn()
@@ -22,7 +25,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public bool isHuman = false; // Set this based on player type (human or AI)
+    
 
     public void ResetRoundStats()
     {

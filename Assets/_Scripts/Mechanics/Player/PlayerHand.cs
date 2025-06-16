@@ -8,12 +8,6 @@ public class PlayerHand : MonoBehaviour
     public Transform handArea;
     public PlayerData playerData;
 
-    [Header("Card Prefabs by Element")]
-    public GameObject fireCardPrefab;
-    public GameObject waterCardPrefab;
-    public GameObject earthCardPrefab;
-    public GameObject airCardPrefab;
-
     public void PopulateHand(List<CardData> hand)
     {
         ClearHand();
@@ -40,20 +34,22 @@ public class PlayerHand : MonoBehaviour
 
     public void FanOutCards()
     {
-        float spacing = 200f; // Adjust spacing between cards
-        float startX = -((playerData.hand.Count - 1) * spacing) / 2f; // Center the fan
+        float cardWidth = 120f; //Will need to adjust based on prefab size
+        float maxSpread = Mathf.Min(cardWidth * playerData.hand.Count, 800f); //Max spread to prevent overflow
+        float spacing = maxSpread / playerData.hand.Count;
+        float startX = -maxSpread / 2f;
 
         for (int i = 0; i < handArea.childCount; i++)
         {
-           RectTransform card = handArea.GetChild(i).GetComponent<RectTransform>();
-            if (card != null) continue;
+            RectTransform card = handArea.GetChild(i).GetComponent<RectTransform>();
+            if (card == null) continue; // Skip if no RectTransform found
 
-            Vector2 targetPos = new Vector2(startX + 2 * spacing, 0f);
-            float delay = i * 0.03f; //Delay for each card to create a fan effect
+            Vector2 targetPos = new Vector2(startX + i * spacing, 0f);
+            float delay = i * 0.05f;
 
-            card.DOKill(); //prevent overlapping tweens
-            card.DOAnchorPos(targetPos, 2f)
-                .SetEase(Ease.OutCubic)
+            card.DOKill();
+            card.DOAnchorPos(targetPos, 0.3f)
+                .SetEase(Ease.OutQuad)
                 .SetDelay(delay);
         }
     }
@@ -79,19 +75,6 @@ public class PlayerHand : MonoBehaviour
 
     private GameObject GetCardPrefab(ElementType element)
     {
-        switch (element)
-        {
-            case ElementType.Fire:
-                return fireCardPrefab;
-            case ElementType.Water:
-                return waterCardPrefab;
-            case ElementType.Earth:
-                return earthCardPrefab;
-            case ElementType.Air:
-                return airCardPrefab;
-            default:
-                Debug.LogError("Unknown element type: " + element);
-                return null;
-        }
+        return DeckManager.dm.GetCardPrefab(element);
     }
 }

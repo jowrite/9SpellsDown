@@ -32,6 +32,11 @@ public class DeckManager : MonoBehaviour
         LoadDeck();
     }
 
+    private void Start()
+    {
+        hiddenZone.gameObject.SetActive(false); // Hide AI hand area by default
+    }
+
     public void ShuffleAndDeal()
     {
         if (dm == null)
@@ -121,39 +126,42 @@ public class DeckManager : MonoBehaviour
 
     public void DealCardToPlayer(PlayerData player, CardData card)
     {
-        Debug.Log($"Dealing card: {card.name} | Element: {card.element}");
-
-        GameObject cardPrefab = GetCardPrefab(card.element);
-        if (cardPrefab == null)
+        if(player.isHuman)
         {
-            Debug.LogError($"Card prefab not found for element {card.element}");
-            return;
+            Debug.Log($"Dealing card: {card.name} | Element: {card.element}");
+
+            GameObject cardPrefab = GetCardPrefab(card.element);
+            if (cardPrefab == null)
+            {
+                Debug.LogError($"Card prefab not found for element {card.element}");
+                return;
+            }
+
+            GameObject cardGO = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, deckTransform.parent);
+            //Debug: add visibility check
+            cardGO.transform.localScale = Vector3.one; //Override any tween starting values
+            Debug.Log($"Card spawned at: {cardGO.transform.position} | Active: {cardGO.activeInHierarchy}");
+
+            CardUI cardUI = cardGO.GetComponent<CardUI>();
+            cardUI.cd = card;
+            cardUI.owner = player;
+            cardUI.SetCardVisuals();
+            cardGO.transform.SetParent(playerHandArea, worldPositionStays: true); // Set parent to player's hand area
+
+            //Animate to hand
+            Vector2 randomOffset = new Vector2(Random.Range(-200f, 200f), 0f);
+            cardUI.AnimToPosition(randomOffset, delay: 0.05f * player.hand.Count);
         }
-
-        GameObject cardGO = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, deckTransform.parent);
-        //Debug: add visibility check
-        cardGO.transform.localScale = Vector3.one; //Override any tween starting values
-        Debug.Log($"Card spawned at: {cardGO.transform.position} | Active: {cardGO.activeInHierarchy}");
-
-        CardUI cardUI = cardGO.GetComponent<CardUI>();
-        cardUI.cd = card;
-        cardUI.owner = player;
-        cardUI.SetCardVisuals();
-
-        // Set the card's parent based on player type - should not show AI cards in human player's hand
-        if (player.isHuman)
+        //For AI: just add to hand data (no instantiation)
+        else if (player.isAI)
         {
-            cardGO.transform.SetParent(playerHandArea, worldPositionStays: true);
+            player.hand.Add(card);
+            Debug.Log($"Dealt card to AI player: {player.playerName} | Card: {card.cardName}");
         }
         else
         {
-            cardGO.transform.SetParent(hiddenZone, worldPositionStays: true);
+            Debug.LogError("Player type not recognized. Cannot deal card.");
         }
-        
-        //Animate to hand
-        Vector2 randomOffset = new Vector2(Random.Range(-200f, 200f), 0f);
-        cardUI.AnimToPosition(randomOffset, delay: 0.05f * player.hand.Count);
-       
     }
 
 }

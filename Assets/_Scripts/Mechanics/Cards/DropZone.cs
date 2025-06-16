@@ -15,7 +15,7 @@ public class DropZone : MonoBehaviour
     {
         
         Debug.Log($"Card {card.cd.cardName} played to zone");
-        TrickManager.tm.PlayCard(card.owner, card.cd);
+        TrickManager.tm.PlayCard(card.owner, card.cd, card.gameObject);
         //anim into place on zone
     }
 }

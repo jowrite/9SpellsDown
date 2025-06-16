@@ -274,8 +274,9 @@ MonoBehaviour:
   playerName: WitchAI2
   curseLevel: 9
   spellCastsThisRound: 0
-  hand: []
   isHuman: 0
+  isAI: 1
+  hand: []
 --- !u!1 &454110452
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,10 +776,13 @@ MonoBehaviour:
   playedCards:
   - player: {fileID: 0}
     card: {fileID: 0}
+    cardObject: {fileID: 0}
   - player: {fileID: 0}
     card: {fileID: 0}
+    cardObject: {fileID: 0}
   - player: {fileID: 0}
     card: {fileID: 0}
+    cardObject: {fileID: 0}
   currentLeader: {fileID: 0}
 --- !u!1 &765116316
 GameObject:
@@ -835,6 +839,41 @@ MonoBehaviour:
   - {fileID: 600619470}
   - {fileID: 1069547629}
   playedCards: []
+--- !u!1 &784503866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 784503867}
+  m_Layer: 5
+  m_Name: HiddenZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &784503867
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784503866}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2138481775}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3710, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &939354637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHandArea: {fileID: 1628708301}
-  hiddenZone: {fileID: 0}
+  hiddenZone: {fileID: 784503867}
   deckTransform: {fileID: 968205783}
   fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
   waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
@@ -1114,41 +1153,6 @@ MonoBehaviour:
   aiPlayers:
   - {fileID: 1022000260}
   - {fileID: 368885549}
---- !u!1 &971033775
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 971033776}
-  m_Layer: 5
-  m_Name: HiddenCards
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &971033776
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971033775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2138481775}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2042}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &986099446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,8 +1473,9 @@ MonoBehaviour:
   playerName: WitchAI1
   curseLevel: 9
   spellCastsThisRound: 0
-  hand: []
   isHuman: 0
+  isAI: 1
+  hand: []
 --- !u!1 &1069547626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,8 +1815,9 @@ MonoBehaviour:
   playerName: Player
   curseLevel: 9
   spellCastsThisRound: 0
-  hand: []
   isHuman: 1
+  isAI: 0
+  hand: []
 --- !u!1 &1469029616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,10 +2027,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handArea: {fileID: 1628708301}
   playerData: {fileID: 1182404123}
-  fireCardPrefab: {fileID: 8534900548895795755, guid: 149cf82cbf299c34195743a15f4f7fa4, type: 3}
-  waterCardPrefab: {fileID: 5158793120964649507, guid: 57af56a67f342fe46ad220b8fcd828f1, type: 3}
-  earthCardPrefab: {fileID: 2034516746157526884, guid: 95cafdfcf88aeb44c9961687f1ff3fc8, type: 3}
-  airCardPrefab: {fileID: 6761568369217546326, guid: 1f1582a5890d4cb4787fa09bc907d38c, type: 3}
 --- !u!1 &1779938985
 GameObject:
   m_ObjectHideFlags: 0
@@ -2502,7 +2504,7 @@ RectTransform:
   m_Children:
   - {fileID: 1092651249}
   - {fileID: 1628708301}
-  - {fileID: 971033776}
+  - {fileID: 784503867}
   m_Father: {fileID: 1781512131}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -5,107 +5,101 @@ using UnityEngine.EventSystems;
 
 public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
+    [Header("References")]
     public CardData cd;
-    private Vector3 startPos;
     public PlayerData owner;
-    private CanvasGroup canvasGroup;
-
     public TMPro.TextMeshPro valueTop;
     public TMPro.TextMeshPro valueBottom;
     public SpriteRenderer elementIcon;
 
-    [Header("Anim Settings")]
+    [Header("Settings")]
     public float snapDuration = 0.3f;
     public Ease snapEase = Ease.OutCubic;
+    public float dragScale = 1.1f;
+    public float returnDuration = 0.3f;
 
     [Header("VFX/SFX")]
     public GameObject playVFX; //Particle system or prefab
     public AudioClip playSFX; //Card play sound
 
+    private Vector3 startPos;
+    private CanvasGroup canvasGroup;
+    private Transform originalParent;
+    private bool isDragging;
 
     private void Start()
     {
         startPos = transform.position;
         canvasGroup = GetComponent<CanvasGroup>();
+        originalParent = transform.parent;
 
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!owner.isHuman) return;
+        
+        isDragging = true;
         canvasGroup.blocksRaycasts = false; // Disable raycasting to allow drag events to pass through
+        transform.SetParent(transform.root); // Move card to root to avoid UI hierarchy issues
+        transform.DOScale(dragScale, 0.2f); 
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = Input.mousePosition; //Move card to follow finger
+        if (!isDragging) return;
+        transform.position = eventData.position;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = true; // Re-enable raycasting
-        TryPlay(); //Check if the card was dropped in the drop zone
+        if (!isDragging) return;
+        isDragging = false;
+        transform.DOScale(1f, 0.2f);
+        TryPlay(eventData.position); 
     }
 
-    public void TryPlay()
+    public void TryPlay(Vector2 screenPosition)
     {
         //Check if its the player's turn
         //Use screen position to see if the card was tapped in the drop zone area
 
-        Vector2 screenPos = Input.mousePosition;
-
         DropZone zone = FindFirstObjectByType<DropZone>();
-        RectTransform rt = zone.GetComponent<RectTransform>();
-
-        if(RectTransformUtility.RectangleContainsScreenPoint(rt, screenPos))
+        if (zone != null && RectTransformUtility.RectangleContainsScreenPoint(
+            zone.GetComponent<RectTransform>(), screenPosition))
         {
-            SnapToZone(rt.position, zone);
+            SnapToZone(zone.transform.position, zone);
         }
         else
         {
-            Debug.Log("Not in drop zone");
+            //Return to hand if not dropped in a valid zone
+            ReturnToHand();
         }
+    }
+
+    private void ReturnToHand()
+    {
+        transform.DOMove(startPos, 0.3f)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() => canvasGroup.blocksRaycasts = true); // Re-enable raycasting after return
     }
 
     private void SnapToZone(Vector3 targetPosition, DropZone zone)
     {
-        RectTransform rt = GetComponent<RectTransform>();
-        CanvasGroup group = GetComponent<CanvasGroup>();
-
-        //Disable interaction
-        if (group) group.blocksRaycasts = false;
-
-        //Kill any ongoing tweens 
-        rt.DOKill();
-
         //Animate position, scale and fade
         Sequence snapSeq = DOTween.Sequence();
 
         //Move & scale
-        snapSeq.Append(rt.DOMove(targetPosition, snapDuration).SetEase(snapEase));
-        snapSeq.Join(rt.DOScale(1.2f, snapDuration / 2).SetLoops(2, LoopType.Yoyo));
-        
+        snapSeq.Append(transform.DOMove(targetPosition, snapDuration).SetEase(snapEase));
+        snapSeq.Join(transform.DOScale(1.2f, snapDuration / 2).SetLoops(2, LoopType.Yoyo));
+
         //Add sparkle + sound at halfway point
-        snapSeq.InsertCallback(snapDuration * 0.5f, () =>
-        {
-            TriggerEffects(targetPosition);
-        });
-        
+        snapSeq.InsertCallback(snapDuration * 0.5f, () => TriggerEffects(targetPosition));
+
         //Fade & destroy after play
-        snapSeq.OnComplete(() =>
-        {
-            if (group) 
-            {  
-                group.DOFade(0f, 0.2f).OnComplete(() =>
-                {
-                    zone.OnCardPlayed(this);
-                    Destroy(gameObject);
-                });
-            }
-            else
-            {
-                zone.OnCardPlayed(this);
-                Destroy(gameObject);
-            }
+        snapSeq.OnComplete(() => {
+            zone.OnCardPlayed(this); // Notify drop zone
+            Destroy(gameObject); // Destroy card after play
         });
 
     }
@@ -147,27 +141,21 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             Debug.LogError("elementIcon or CardData.elementIcon is missing!");
     }
 
-    public void AnimToPosition(Vector2 anchoredTarget, float delay = 0f, float duration = 0.4f)
+    public void AnimToPosition(Vector2 targetPos, float delay = 0f, float duration = 0.4f)
     {
-        Debug.Log($"Animating from: {transform.position} to {anchoredTarget}");
+        Debug.Log($"Animating from: {transform.position} to {targetPos}");
 
         //Force initial visibility
         gameObject.SetActive(true);
 
         RectTransform rt = GetComponent<RectTransform>();
-        CanvasGroup group = GetComponent<CanvasGroup>();
 
         //Reset any previous tweening
         rt.DOKill(true);
-        group.alpha = 0;
-        rt.localScale = Vector3.one * 0.5f; //Start small
 
         Sequence seq = DOTween.Sequence();
-
-        seq.PrependInterval(delay); //Deal in order
-        seq.Append(group.DOFade(1f, 0.2f)); //Fade in
-        seq.Join(rt.DOAnchorPos(anchoredTarget, duration).SetEase(Ease.OutCubic)); //anchored UI move
-        seq.Join(rt.DOScale(1f, duration).SetEase(Ease.OutBack)); //Scale up
-
+        seq.SetDelay(delay);
+        seq.Append(rt.DOAnchorPos(targetPos, 0.4f).SetEase(Ease.OutCubic));
+        seq.Join(rt.DOScale(1f, 0.4f).SetEase(Ease.OutBack));
     }
 }

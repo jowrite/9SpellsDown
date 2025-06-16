@@ -17,7 +17,7 @@ public class TrickManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void PlayCard(PlayerData player, CardData card)
+    public void PlayCard(PlayerData player, CardData card, GameObject cardGO)
     {
         if (playedCards.Count == 0)
         {
@@ -25,7 +25,9 @@ public class TrickManager : MonoBehaviour
             currentLeader = player;
         }
 
-        playedCards.Add(new PlayedCard(player, card));
+        //Move card to play area
+        cardGO.transform.SetParent(transform);
+        playedCards.Add(new PlayedCard(player, card, cardGO));
         player.hand.Remove(card);
         Debug.Log($"{player.playerName} played {card.cardName}");
 
@@ -92,11 +94,13 @@ public class TrickManager : MonoBehaviour
     {
         public PlayerData player;
         public CardData card;
+        public GameObject cardObject;
 
-        public PlayedCard(PlayerData player, CardData card)
+        public PlayedCard(PlayerData player, CardData card, GameObject cardObject)
         {
             this.player = player;
             this.card = card;
+            this.cardObject = cardObject;
         }
     }
 }
