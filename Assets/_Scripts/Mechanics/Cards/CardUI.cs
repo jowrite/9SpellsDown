@@ -37,8 +37,10 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!owner.isHuman) return;
+        Debug.Log($"Card {cd.cardName} tapped by {owner.playerName}");
+        Debug.Log(eventData);
         
+        if (!owner.isHuman) return;
         isDragging = true;
         canvasGroup.blocksRaycasts = false; // Disable raycasting to allow drag events to pass through
         transform.SetParent(transform.root); // Move card to root to avoid UI hierarchy issues
