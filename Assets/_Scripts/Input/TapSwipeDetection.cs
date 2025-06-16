@@ -124,7 +124,7 @@ public class TapSwipeDetection : MonoBehaviour
                 {
                     Debug.Log($"Tapped/Swiped on card: {result.gameObject.name}");
                     CardUI card = result.gameObject.GetComponent<CardUI>();
-                    if(card != null) card.TryPlay();
+                    if(card != null) card.TryPlay(screenPosition);
                     break;
                 }
             }
