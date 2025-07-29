@@ -23,13 +23,15 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public AudioClip playSFX; //Card play sound
 
     private Vector3 startPos;
+    private Vector3 originalScale;
     private CanvasGroup canvasGroup;
     private Transform originalParent;
     private bool isDragging;
 
     private void Start()
     {
-        startPos = transform.position;
+        originalScale = transform.localScale;
+        startPos = transform.localPosition;
         canvasGroup = GetComponent<CanvasGroup>();
         originalParent = transform.parent;
 
@@ -44,7 +46,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         isDragging = true;
         canvasGroup.blocksRaycasts = false; // Disable raycasting to allow drag events to pass through
         transform.SetParent(transform.root); // Move card to root to avoid UI hierarchy issues
-        transform.DOScale(dragScale, 0.2f); 
+        //transform.DOScale(dragScale, 0.2f); 
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -57,7 +59,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         if (!isDragging) return;
         isDragging = false;
-        transform.DOScale(1f, 0.2f);
+        //transform.DOScale(1f, 0.2f);
         TryPlay(eventData.position); 
     }
 
@@ -81,7 +83,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     private void ReturnToHand()
     {
-        transform.DOMove(startPos, 0.3f)
+        transform.DOLocalMove(startPos, 0.3f)
             .SetEase(Ease.OutBack)
             .OnComplete(() => canvasGroup.blocksRaycasts = true); // Re-enable raycasting after return
     }
@@ -92,7 +94,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         Sequence snapSeq = DOTween.Sequence();
 
         //Move & scale
-        snapSeq.Append(transform.DOMove(targetPosition, snapDuration).SetEase(snapEase));
+        snapSeq.Append(transform.DOLocalMove(targetPosition, snapDuration).SetEase(snapEase));
         snapSeq.Join(transform.DOScale(1.2f, snapDuration / 2).SetLoops(2, LoopType.Yoyo));
 
         //Add sparkle + sound at halfway point
@@ -147,17 +149,18 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         Debug.Log($"Animating from: {transform.position} to {targetPos}");
 
-        //Force initial visibility
-        gameObject.SetActive(true);
+        //Convert to local space if necessary
+        if (transform.parent != null)
+        {
+            targetPos = transform.parent.InverseTransformPoint(targetPos);
+        }
 
-        RectTransform rt = GetComponent<RectTransform>();
+        transform.DOLocalMove(targetPos, duration) // Move to target position
+            .SetDelay(delay)
+            .SetEase(Ease.OutCubic);
 
-        //Reset any previous tweening
-        rt.DOKill(true);
-
-        Sequence seq = DOTween.Sequence();
-        seq.SetDelay(delay);
-        seq.Append(rt.DOAnchorPos(targetPos, 0.4f).SetEase(Ease.OutCubic));
-        seq.Join(rt.DOScale(1f, 0.4f).SetEase(Ease.OutBack));
+        transform.DOScale(originalScale, duration) // Scale back to original size
+            .SetDelay(delay)
+            .SetEase(Ease.OutCubic);
     }
 }

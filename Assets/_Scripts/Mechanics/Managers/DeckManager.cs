@@ -137,20 +137,29 @@ public class DeckManager : MonoBehaviour
                 return;
             }
 
-            GameObject cardGO = Instantiate(cardPrefab, deckTransform.position, Quaternion.identity, deckTransform.parent);
+            //Instantiate as a child of the hand area
+            GameObject cardGO = Instantiate(cardPrefab, playerHandArea);
             //Debug: add visibility check
-            cardGO.transform.localScale = Vector3.one; //Override any tween starting values
+            cardGO.transform.localPosition = Vector3.zero;
+            cardGO.transform.localScale = Vector3.one;
             Debug.Log($"Card spawned at: {cardGO.transform.position} | Active: {cardGO.activeInHierarchy}");
 
             CardUI cardUI = cardGO.GetComponent<CardUI>();
             cardUI.cd = card;
             cardUI.owner = player;
             cardUI.SetCardVisuals();
-            cardGO.transform.SetParent(playerHandArea, worldPositionStays: true); // Set parent to player's hand area
+
+            //Calculate position in hand
+            float cardWidth = 22f;
+            float spacing = -0.02f;
+            float totalWidth = (cardWidth + spacing) * (player.hand.Count - 1);
+            float startX = -totalWidth / 2;
+
+            //Calculate position to evenly space cards in playerhand
+            Vector2 targetPos = new Vector2(startX + (player.hand.Count - 1) * (cardWidth + spacing), 0f);
 
             //Animate to hand
-            Vector2 randomOffset = new Vector2(Random.Range(-200f, 200f), 0f);
-            cardUI.AnimToPosition(randomOffset, delay: 0.05f * player.hand.Count);
+            cardUI.AnimToPosition(targetPos, delay: 0.05f * player.hand.Count);
         }
         //For AI: just add to hand data (no instantiation)
         else if (player.isAI)
