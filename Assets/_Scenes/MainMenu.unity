@@ -2533,13 +2533,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rules for the game will be here
-
-
-    Blah blah blah
-
-
-    Test test Test'
+  m_text: "Witch to the left of the card dealer must cast their spell-card first.
+    Preceding players must follow the <b>element</b> that was lead.\n\tIf the caster
+    does not have the leading element, they must <u><b>discard</b></u> from another
+    element. \n\t\nAlternatively, a witch can choose to <b>foil</b> the spell-cast
+    if a <b>foil element</b> has been activated that round. \n\n\n<b>Gameplay Example
+    1</b>\nSally goes first and casts\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeb8253a93b602340b9baffe80da5713, type: 2}
   m_sharedMaterial: {fileID: 6886638320898862944, guid: eeb8253a93b602340b9baffe80da5713, type: 2}
