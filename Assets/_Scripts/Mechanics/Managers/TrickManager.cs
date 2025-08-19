@@ -38,6 +38,15 @@ public class TrickManager : MonoBehaviour
         else
         { 
             TurnManager.turn.EndPlayerTurn(); //End the current player's turn
+
+            //If the next player is AI, trigger their turn
+            PlayerData next = TurnManager.turn.GetNextPlayer();
+
+            if (next.isAI)
+            {
+                AIController.Instance.TakeAITurn(next);
+            }
+
         }
     }
 

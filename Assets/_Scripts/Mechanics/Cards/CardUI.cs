@@ -79,6 +79,13 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             //Return to hand if not dropped in a valid zone
             ReturnToHand();
         }
+
+        if (cd == null || owner == null) return;
+
+        //Don't allow AI to trigger by accident
+        if (!owner.isHuman) return;
+
+        TrickManager.tm.PlayCard(owner, cd, gameObject);
     }
 
     private void ReturnToHand()
