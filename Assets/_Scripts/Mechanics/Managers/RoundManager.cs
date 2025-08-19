@@ -19,7 +19,7 @@ public class RoundManager : MonoBehaviour
     {
         RollFoilElement();
         DealCards();
-        PromptWildMagic();
+        //PromptWildMagic();
     }
 
     private void RollFoilElement()
@@ -43,13 +43,6 @@ public class RoundManager : MonoBehaviour
     private void DealCards()
     {
         DeckManager.dm.ShuffleAndDeal();
-    }
-
-    private void PromptWildMagic()
-    {
-        Debug.Log("Skipping Wild Magic for now.");
-        // Immediately continue into trick play
-        TurnManager.turn.StartNewTrick(GameManager.Instance.players[0]);
     }
 
 }

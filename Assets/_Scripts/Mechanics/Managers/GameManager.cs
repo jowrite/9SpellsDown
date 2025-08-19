@@ -129,16 +129,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    //private void UpdateAllHUDs()
-    //{
-    //    for (int i = 0; i < players.Count; i++)
-    //    {
-    //        playerHUDs[i].UpdateHUD(players[i]);
-    //        playerHUDs[i].SetLeaderHighlight(i == currentRound % players.Count);
-    //    }
-    //}
-
     //SIMULATE ROUNDS FOR TESTING
     #region
     //public void SimulateRound()

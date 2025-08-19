@@ -27,9 +27,7 @@ public class AIController : MonoBehaviour
             yield break; //No cards to play
         }
         
-        
         CardData chosen = ChooseCard(ai.hand);
-        ai.hand.Remove(chosen);
 
         // Instantiate AI card visual when played
         GameObject cardPrefab = DeckManager.dm.GetCardPrefab(chosen.element);
