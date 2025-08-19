@@ -47,7 +47,9 @@ public class RoundManager : MonoBehaviour
 
     private void PromptWildMagic()
     {
-        //Show UI for the wild magic decision (player, then AI)
+        Debug.Log("Skipping Wild Magic for now.");
+        // Immediately continue into trick play
+        TurnManager.turn.StartNewTrick(GameManager.Instance.players[0]);
     }
 
 }

@@ -72,6 +72,7 @@ public class DeckManager : MonoBehaviour
         // Remaining 13 cards go to wild magic hand
         wildMagicHand.AddRange(currentDeck);
         Debug.Log("Shuffling complete. Wild Magic Hand is ready.");
+        return;
     }
 
     private void Shuffle(List<CardData> deck)

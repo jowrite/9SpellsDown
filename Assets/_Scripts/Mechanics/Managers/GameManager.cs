@@ -73,10 +73,10 @@ public class GameManager : MonoBehaviour
         }
 
         //Update HUDs
-        //foreach (PlayerHUD hud in playerHUDs)
-        //{
-        //    hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
-        //}
+        foreach (PlayerHUD hud in playerHUDs)
+        {
+            hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
+        }
 
         CheckMagicLaw();
         currentRound++;

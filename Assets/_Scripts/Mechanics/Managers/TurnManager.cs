@@ -67,9 +67,6 @@ public class TurnManager : MonoBehaviour
         //TrickManager handles resolution
     }
 
-    
-
-
     //Visual shader highlight for the leader
     private void UpdateLeaderHighlight(PlayerData leader)
     {

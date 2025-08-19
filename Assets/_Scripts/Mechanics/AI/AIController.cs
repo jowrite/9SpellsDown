@@ -52,7 +52,7 @@ public class AIController : MonoBehaviour
         cardUI.SetCardVisuals();
 
         //Anim to play area
-        //cardUI.AnimToPlayArea();
+        cardUI.AnimToPosition(DeckManager.dm.deckTransform.position);
 
         TrickManager.tm.PlayCard(ai, chosen, cardGO);
     }
