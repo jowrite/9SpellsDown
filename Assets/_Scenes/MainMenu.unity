@@ -709,7 +709,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 672}
+  m_AnchoredPosition: {x: 0, y: 1257.2152}
   m_SizeDelta: {x: -41.4, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &447583412
@@ -2815,17 +2815,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Witch to the left of the card dealer must cast their spell-card first.
-    Preceding players must follow the <b>element</b> that was lead.\n\tIf the caster
+    Preceding players must follow the <b>element</b> that was lead.\nIf the caster
     does not have the leading element, they must <u><b>discard</b></u> from another
-    element. \n\t\nAlternatively, a witch can choose to <b>foil</b> the spell-cast
-    if a <b>foil element</b> has been activated that round. \n\n<b>Gameplay Example
-    1</b>\nSally goes first and casts <b>8 of Fire</b>.                                         
-    \n                     <sprite index=2>        <sprite index=0>\n<br>\nGillian
-    must follow the lead element and play one of her fire cards - she chooses to
-    cast <b>Jack of Fire</b>.  \n<br>Finally, you must choose a card. You only have
-    a 3 and 7 of Fire in your hand. Since you must follow suit, you choose to play
-    the 3 of Fire (the lower of the two).    \n                                            
-    <sprite index=1>"
+    element. \n<br>Alternatively, a witch can choose to <b>foil</b> the spell-cast
+    if a <b>foil element</b> has been activated that round. \n<br><b>Gameplay Example
+    1</b>\nSally goes first and casts <b>8 of Fire</b>\n<sprite index=2>                    
+    <sprite index=0>\n<sprite index=1>   \n<br>\nGillian must follow the lead element
+    and play one of her fire cards - she chooses to cast <b>Jack of Fire</b>.  \n<br>Finally,
+    you must choose a card. You only have a <b>3 </b>and <b>7 of Fire</b> in your
+    hand. Since you must follow suit, you choose to play the <b>3 of Fire</b> (the
+    lower of the two). \n<br>Gillian wins this spellcast.\n<br><b>Gameplay Example
+    2</b>\r\nThe initial dice roll activates <b>Earth as the foil element</b>.\r\n<br>Gillian
+    leads by playing the Ace of Water card.                  \n                                           
+    <sprite index=3>\nSally would love to \nfoil with her <b>King of Earth</b> card,
+    <u>but she still has <b>Water</b> cards in her hand</u>. \r\n                                              
+    <sprite index=4>\nShe must follow \nGillian\u2019s leading element, so she plays
+    the <b>3 of Water</b>.\r\n\nLuckily, <b>you</b> don\u2019t have any water cards
+    left in your hand.\r\nYou <b>foil the spell-cast</b> by playing your <b>4 of
+    Earth</b> and win this spell-cast!    \n                                               
+    <sprite index=5>\r  \r\n\n<br>When a witch wins a spell-cast, they gain control
+    of the turn order \r                     and play first in the next spell-cast.
+    \r\nWin enough spell-casts to dispel your witch\u2019s curse!\r\nGoodluck have
+    fun :3\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeb8253a93b602340b9baffe80da5713, type: 2}
   m_sharedMaterial: {fileID: 6886638320898862944, guid: eeb8253a93b602340b9baffe80da5713, type: 2}
@@ -3559,7 +3570,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1972863132}
   m_HandleRect: {fileID: 1972863131}
   m_Direction: 2
-  m_Value: 0.8255435
+  m_Value: 0.67361695
   m_Size: 0.3521281
   m_NumberOfSteps: 0
   m_OnValueChanged:
