@@ -56,6 +56,7 @@ public class TurnManager : MonoBehaviour
         currentPlayer.TakeTurn(); //Calls player or AI logic
     }
 
+    //Might not need this tbd
     public PlayerData GetNextPlayer()
     {
         int next = (currentIndex + 1) % playerOrder.Count;
