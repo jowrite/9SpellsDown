@@ -7,7 +7,7 @@ public class TurnManager : MonoBehaviour
 
     public List<PlayerData> playerOrder = new List<PlayerData>(); //rotating list of players
     [SerializeField] private List<PlayerHUD> playerHUDs;
-    public int currentPlayerIndex = 0;
+    private int currentIndex = 0;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class TurnManager : MonoBehaviour
         //Highlight the new leader visually
         UpdateLeaderHighlight (playerOrder[0]);
 
-        currentPlayerIndex = 0;
+        currentIndex = 0;
         TrickManager.tm.ResetTrick();
         StartPlayerTurn();
     }
@@ -50,7 +50,7 @@ public class TurnManager : MonoBehaviour
 
     public void StartPlayerTurn()
     {
-        PlayerData currentPlayer = playerOrder[currentPlayerIndex];
+        PlayerData currentPlayer = playerOrder[currentIndex];
         Debug.Log($"{currentPlayer.playerName}'s turn!");
 
         currentPlayer.TakeTurn(); //Calls player or AI logic
@@ -58,14 +58,21 @@ public class TurnManager : MonoBehaviour
 
     public PlayerData GetNextPlayer()
     {
-        return playerOrder[currentPlayerIndex];
+        int next = (currentIndex + 1) % playerOrder.Count;
+        return playerOrder[next]; // Get the next player in the order
+    }
+
+    public PlayerData GetCurrentPlayer()
+    {
+        if (playerOrder == null || playerOrder.Count == 0) return null;
+        return playerOrder[currentIndex]; // Get the current player
     }
 
     public void EndPlayerTurn()
     {
-        currentPlayerIndex++;
+        currentIndex++;
 
-        if (currentPlayerIndex < playerOrder.Count)
+        if (currentIndex < playerOrder.Count)
         {
             StartPlayerTurn();
         }

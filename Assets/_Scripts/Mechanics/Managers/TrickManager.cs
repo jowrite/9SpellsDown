@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -19,39 +20,56 @@ public class TrickManager : MonoBehaviour
 
     public void PlayCard(PlayerData player, CardData card, GameObject cardGO)
     {
-        if (playedCards.Count == 0)
+        if (card == null)
+        {
+            Debug.LogError($"Tried to play a NULL card from {player.playerName} using {cardGO.name}");
+        }
+        //Move card to play area
+        cardGO.transform.SetParent(transform, worldPositionStays: true);
+
+        playedCards.Add(new PlayedCard(player, card, cardGO));
+        player.hand.Remove(card);       
+        Debug.Log($"{player.playerName} played {card.cardName}");
+
+        //If this is first card, establish lead element
+        if (playedCards.Count == 1)
         {
             leadElement = card.element;
             currentLeader = player;
+            Debug.Log($"[Element]{player.playerName} is leader with {card.cardName} ({leadElement})");
         }
 
-        //Move card to play area
-        cardGO.transform.SetParent(transform);
-        playedCards.Add(new PlayedCard(player, card, cardGO));
-        player.hand.Remove(card);
-        Debug.Log($"{player.playerName} played {card.cardName}");
+        //Visual feedback for played card
+        ArrangePlayedCards();
 
-        if (playedCards.Count >= 3)
+        //If full trick, resolve; otherwise advance turn
+        if (playedCards.Count >= TurnManager.turn.playerOrder.Count)
         {
             DetermineWinner();
         }
         else
         { 
             TurnManager.turn.EndPlayerTurn(); //End the current player's turn
-
-            //If the next player is AI, trigger their turn
-            PlayerData next = TurnManager.turn.GetNextPlayer();
-
-            if (next.isAI)
-            {
-                AIController.Instance.TakeAITurn(next);
-            }
-
         }
     }
 
     private void DetermineWinner()
     {
+        //Attempting to fix the pause in game loop here
+        if (playedCards.Count == 0)
+        {
+            Debug.LogError("No cards in trick to determine winner!");
+            return;
+        }
+
+        // Fallback: if leader wasn’t set properly, just use first card played
+        if (currentLeader == null)
+        {
+            currentLeader = playedCards[0].player;
+            leadElement = playedCards[0].card.element;
+            Debug.LogWarning($"Leader was null. Defaulting to {currentLeader.playerName} with {leadElement}");
+        }
+
         PlayerData winner = currentLeader;
         CardData bestCard = playedCards.Find(pc => pc.player == winner).card;
 
@@ -74,6 +92,12 @@ public class TrickManager : MonoBehaviour
         Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
         winner.spellCastsThisRound++;
 
+        foreach (PlayedCard pc in playedCards)
+        {
+            if (pc.cardObject != null)
+                Destroy(pc.cardObject); // Clean up card objects
+        }
+
         playedCards.Clear();
         GameManager.Instance.OnTrickResolved(winner);
         
@@ -83,6 +107,23 @@ public class TrickManager : MonoBehaviour
     {
         playedCards.Clear();
         leadElement = ElementType.None;
+    }
+
+    public void ArrangePlayedCards()
+    {
+        float spacing = 2.5f;
+        float startX = -(playedCards.Count - 1) * spacing * 0.5f; // Tweak as needed
+
+        for (int i = 0; i < playedCards.Count; i++)
+        {
+            if (playedCards[i].cardObject == null) continue;
+
+            Transform cardT = playedCards[i].cardObject.transform;
+            Vector3 targetPos = new Vector3(startX + i * spacing, 0f, 0f);
+
+            //Move smoothly so it looks nice
+            cardT.DOLocalMove(targetPos, 0.3f).SetEase(Ease.OutCubic);
+        }
     }
 
     public int GetHighestValueInTrick(ElementType element)

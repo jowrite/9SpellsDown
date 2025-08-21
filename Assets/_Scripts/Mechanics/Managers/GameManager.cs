@@ -43,17 +43,16 @@ public class GameManager : MonoBehaviour
 
         Object.FindFirstObjectByType<PlayerHand>().FanOutCards();
 
-        //Don't reset player order every round
-        if (TurnManager.turn.playerOrder.Count == 0)
+        //Ensure playerOrder is populated
+        if (TurnManager.turn.playerOrder == null || TurnManager.turn.playerOrder.Count == 0)
             TurnManager.turn.playerOrder = new List<PlayerData>(players);
 
         //Start with whoever won the last trick
-        if (trickLeader != null)
-        {
-            TurnManager.turn.StartNewTrick(trickLeader);
-            Debug.Log($"Trick Leader: {playerOrder[0].playerName}");
-        }
-        
+        PlayerData startingLeader = trickLeader != null ? trickLeader : players[0];
+        TurnManager.turn.StartNewTrick(startingLeader);
+
+        Debug.Log($"Trick leader: {TurnManager.turn.playerOrder[0].playerName}");
+
     }
 
     public void EndRound()

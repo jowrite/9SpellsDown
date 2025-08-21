@@ -25,8 +25,6 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    
-
     public void ResetRoundStats()
     {
         spellCastsThisRound = 0;
