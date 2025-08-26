@@ -58,6 +58,9 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     public void OnDrag(PointerEventData eventData)
     {
         if (!isDragging) return;
+
+        Debug.Log($"Drag position: {eventData.position}, Card position: {transform.position}");
+        Debug.Log($"Card parent: {transform.parent.name}, Active: {gameObject.activeInHierarchy}");
         transform.position = eventData.position;
     }
 
