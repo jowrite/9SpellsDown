@@ -27,6 +27,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     private CanvasGroup canvasGroup;
     private Transform originalParent;
     private bool isDragging;
+    private Camera mainCamera;
 
     private void Start()
     {
@@ -34,13 +35,14 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         startPos = transform.localPosition;
         canvasGroup = GetComponent<CanvasGroup>();
         originalParent = transform.parent;
+        mainCamera = Camera.main;
 
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log($"Card {cd.cardName} tapped by {owner.playerName}");
-        Debug.Log(eventData);
+        //Debug.Log(eventData);
 
         if (!owner.isHuman) return;
         isDragging = true;
@@ -60,89 +62,68 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         if (!isDragging) return;
         isDragging = false;
         //transform.DOScale(1f, 0.2f);
-        TryPlay(eventData.position);
+        TryPlay(eventData.position); //Pass screen coordinates directly
     }
 
     public void TryPlay(Vector2 screenPosition)
     {
         Debug.Log($"TryPlay: card={cd?.cardName ?? "NULL"} owner={(owner != null ? owner.playerName : "NULL")} pos={screenPosition}");
 
-        // find zone
-        DropZone zone = FindFirstObjectByType<DropZone>();
-        bool zoneValid = false;
-        if (zone == null)
+        // Find all zones and check which one is valid
+        DropZone[] allZones = FindObjectsByType<DropZone>(FindObjectsSortMode.None);
+        DropZone validZone = null; ;
+        
+        foreach (DropZone zone in allZones)
         {
-            Debug.LogWarning("TryPlay: No DropZone found in scene!");
-        }
-        else
-        {
-            zoneValid = zone.IsValidDrop(screenPosition);
-            Debug.Log($"TryPlay: zone found. IsValidDrop={zoneValid}");
+            if (zone.IsValidDrop(screenPosition))
+            {
+                validZone = zone;
+                Debug.Log($"TryPlay: valid drop zone found: {zone.name}");
+                break; // Stop after finding the first valid zone
+            }
         }
 
-        if (!zoneValid)
+        if (validZone == null)
         {
-            Debug.Log("TryPlay: invalid drop - returning to hand.");
+            Debug.Log($"TryPlay: no valid drop zone found for {owner.playerName} card {cd.cardName}. Returning to hand.");
             ReturnToHand();
             return;
         }
 
-        // quick data guards
-        if (cd == null)
-        {
-            Debug.LogError("TryPlay: CardData is NULL - cannot play.");
-            ReturnToHand();
-            return;
-        }
-
-        if (owner == null)
-        {
-            Debug.LogError("TryPlay: Owner PlayerData is NULL - cannot play.");
-            ReturnToHand();
-            return;
-        }
-
-        // TurnManager presence
+        //Check if it's the player's turn
         if (TurnManager.turn == null)
         {
-            Debug.LogError("TryPlay: TurnManager.turn is NULL!");
+            Debug.LogError("TryPlay: TurnManager.turn is NULL");
             ReturnToHand();
             return;
         }
 
-        // Detailed current player check + debug instance ids
-        PlayerData current = TurnManager.turn.GetCurrentPlayer();
-        if (current == null)
+        PlayerData currentPlayer = TurnManager.turn.GetCurrentPlayer();
+        if (currentPlayer == null)
         {
-            Debug.LogError("TryPlay: TurnManager returned null current player!");
+            Debug.LogError("TryPlay: Current player is NULL");
             ReturnToHand();
             return;
         }
 
-        Debug.Log($"TryPlay: owner id={owner.GetInstanceID()} name={owner.playerName}  current id={current.GetInstanceID()} name={current.playerName}");
-
-        // ownership validation (strict by reference)
-        if (current != owner)
+        //Other debug check, might not need
+        if (currentPlayer != owner)
         {
-            Debug.Log($"TryPlay: Out of turn. Current player is {current.playerName}. Owner is {owner.playerName}. Rejecting play.");
+            Debug.Log($"TryPlay: Out of turn. Current player is {currentPlayer.playerName}, but {owner.playerName} tried to play.");
             ReturnToHand();
             return;
         }
-
-        // human-only
-        if (!owner.isHuman)
-        {
-            Debug.Log("TryPlay: owner is not human, ignoring.");
-            ReturnToHand();
-            return;
-        }
-
+        
         // All good — register play first, then animate to zone
         Debug.Log($"TryPlay: registering play for {owner.playerName} card {cd.cardName}");
         TrickManager.tm.PlayCard(owner, cd, gameObject);
 
+        //Convert screen position to world position for effects
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenPosition);
+        worldPosition.z = 0f; // Assuming a 2D game in XY plane
+
         // Reparent + animate into the play area (use TrickManager transform, so visuals remain)
-        SnapToZone(zone.transform);
+        SnapToZone(validZone.transform, worldPosition);
     }
     //Old logic, trying something new above
     ////Check if its the player's turn
@@ -181,29 +162,36 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     private void ReturnToHand()
     {
-        transform.DOLocalMove(startPos, 0.3f)
+        transform.SetParent(originalParent); // Reparent back to hand
+        transform.DOLocalMove(startPos, returnDuration)
            .SetEase(Ease.OutBack)
-           .OnComplete(() => canvasGroup.blocksRaycasts = true); // Re-enable raycasting after return
+           .OnComplete(() =>
+           {
+               canvasGroup.blocksRaycasts = true; // Re-enable raycasting after return
+               transform.localScale = originalScale; // Ensure scale is reset
+           }); 
     }
 
-    private void SnapToZone(Transform zoneTransform)
+    private void SnapToZone(Transform zoneTransform, Vector3 screenPosition)
     {
 
         // Reparent to TrickManager play area so the card sits under TrickManager in hierarchy
         Transform playArea = TrickManager.tm.transform;
+        
         Vector3 worldTarget = zoneTransform.position;
-
-        // Make sure world position stays the same when reparenting
-        transform.SetParent(playArea, worldPositionStays: true);
-
-        // Convert world target into local position for the playArea
-        Vector3 localTarget = playArea.InverseTransformPoint(worldTarget);
+        worldTarget.z = 0f; // Ensure z=0 for 2D
+        
+        transform.SetParent(playArea, true);
 
         Sequence snapSeq = DOTween.Sequence();
 
-        snapSeq.Append(transform.DOLocalMove(localTarget, snapDuration).SetEase(snapEase));
+        snapSeq.Append(transform.DOLocalMove(worldTarget, snapDuration).SetEase(snapEase));
         snapSeq.Join(transform.DOScale(1.2f, snapDuration / 2).SetLoops(2, LoopType.Yoyo));
         snapSeq.InsertCallback(snapDuration * 0.5f, () => TriggerEffects(worldTarget));
+        snapSeq.OnComplete(() =>
+        {
+            zoneTransform.GetComponent<DropZone>().OnCardPlayed(this); // Notify drop zone
+        });
         ////Animate position, scale and fade
         //Sequence snapSeq = DOTween.Sequence();
 
