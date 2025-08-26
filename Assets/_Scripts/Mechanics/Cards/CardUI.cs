@@ -59,14 +59,16 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         if (!isDragging) return;
         transform.position = eventData.position;
-        transform.DOScale(originalScale * 1.1f, 0.1f);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!isDragging) return;
         isDragging = false;
-        //transform.DOScale(1f, 0.2f);
+
+        canvasGroup.alpha = 1f;
+        transform.DOScale(originalScale, 0.1f);
+
         TryPlay(eventData.position); //Pass screen coordinates directly
     }
 
