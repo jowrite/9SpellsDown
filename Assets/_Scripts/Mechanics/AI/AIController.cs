@@ -9,8 +9,8 @@ public class AIController : MonoBehaviour
     public static AIController Instance;
 
     [Header("AI Card Positions")]
-    [SerializeField] private Vector2 ai1Position = new Vector2(-40f, 80f);
-    [SerializeField] private Vector2 ai2Position = new Vector2(40f, 65f);
+    [SerializeField] private Vector2 ai1Position = new Vector2(-100f, 200f);
+    [SerializeField] private Vector2 ai2Position = new Vector2(100f, 150f);
 
     private void Awake()
     {
