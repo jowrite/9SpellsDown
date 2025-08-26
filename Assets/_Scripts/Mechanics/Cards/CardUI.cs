@@ -47,14 +47,19 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         if (!owner.isHuman) return;
         isDragging = true;
         canvasGroup.blocksRaycasts = false; // Disable raycasting to allow drag events to pass through
-        transform.SetParent(transform.root); // Move card to root to avoid UI hierarchy issues
-        //transform.DOScale(dragScale, 0.2f); 
+        canvasGroup.alpha = 0.8f; // Slightly fade for feedback
+        
+        //Bring to front with same parent
+        transform.SetAsLastSibling();
+
+        transform.DOScale(originalScale * 1.1f, 0.1f);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (!isDragging) return;
         transform.position = eventData.position;
+        transform.DOScale(originalScale * 1.1f, 0.1f);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -162,7 +167,6 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     private void ReturnToHand()
     {
-        transform.SetParent(originalParent); // Reparent back to hand
         transform.DOLocalMove(startPos, returnDuration)
            .SetEase(Ease.OutBack)
            .OnComplete(() =>
