@@ -270,7 +270,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             .SetDelay(delay)
             .SetEase(Ease.OutCubic);
 
-        transform.DOScale(originalScale, duration) // Scale back to original size
+        transform.DOScale(originalScale * 2f, duration) // Scale up slightly
             .SetDelay(delay)
             .SetEase(Ease.OutCubic);
     }

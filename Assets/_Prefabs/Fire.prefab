@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4566841581618273558}
   - component: {fileID: 8452793825962629351}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 3740870650832672321, guid: f45d95e1f23db18409e893f75d55b1bb, type: 3}
   m_Color: {r: 1, g: 0.5934253, b: 0.4669811, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4931298426679761428}
   - component: {fileID: 3933493052572532103}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4669017117130907530}
   - component: {fileID: 2402418422878494140}
   - component: {fileID: 2603781893908223191}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ValueTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 7780277043418735099}
   - component: {fileID: 3668390629734849052}
   - component: {fileID: 6712696152168349106}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ValueBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,9 +538,9 @@ GameObject:
   - component: {fileID: 4532129388416773815}
   - component: {fileID: 5114551528321108546}
   - component: {fileID: 988816894781320162}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Fire
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,7 +554,7 @@ RectTransform:
   m_GameObject: {fileID: 8534900548895795755}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4931298426679761428}

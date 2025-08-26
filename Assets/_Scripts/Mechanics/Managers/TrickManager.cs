@@ -121,10 +121,14 @@ public class TrickManager : MonoBehaviour
             if (playedCards[i].cardObject == null) continue;
 
             Transform cardT = playedCards[i].cardObject.transform;
-            Vector3 targetPos = new Vector3(startX + i * spacing, 0f, 0f);
 
-            //Move smoothly so it looks nice
-            cardT.DOLocalMove(targetPos, 0.3f).SetEase(Ease.OutCubic);
+            //Only reposition human cards
+            if (playedCards[i].player.isHuman)
+            {
+                Vector3 targetPos = new Vector3(startX + i * spacing, 0f, 0f);
+                //Move smoothly so it looks nice
+                cardT.DOLocalMove(targetPos, 0.3f).SetEase(Ease.OutCubic);
+            }  
         }
     }
 

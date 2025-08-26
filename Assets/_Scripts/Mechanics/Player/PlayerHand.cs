@@ -34,8 +34,8 @@ public class PlayerHand : MonoBehaviour
 
     public void FanOutCards()
     {
-        float cardWidth = 120f; //Will need to adjust based on prefab size
-        float maxSpread = Mathf.Min(cardWidth * playerData.hand.Count, 800f); //Max spread to prevent overflow
+        float cardWidth = 130f; //Will need to adjust based on prefab size
+        float maxSpread = Mathf.Min(cardWidth * playerData.hand.Count, 500f); //Max spread to prevent overflow
         float spacing = maxSpread / playerData.hand.Count;
         float startX = -maxSpread / 2f;
 

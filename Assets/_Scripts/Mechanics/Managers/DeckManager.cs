@@ -201,7 +201,6 @@ public class DeckManager : MonoBehaviour
         //For AI: just add to hand data (no instantiation)
         else if (player.isAI)
         {
-            player.hand.Add(card);
             Debug.Log($"Dealt card to AI player: {player.playerName} | Card: {card.cardName}");
         }
         else

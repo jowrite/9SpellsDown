@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6370717446675369605}
   - component: {fileID: 5806300189182360652}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Element
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1623647345179350462, guid: f45d95e1f23db18409e893f75d55b1bb, type: 3}
   m_Color: {r: 0.07943219, g: 0.990566, b: 0.95452255, a: 1}
   m_FlipX: 0
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2616635443207580095}
   - component: {fileID: 2896307420878804071}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 5397529047234541385}
   - component: {fileID: 1642850255059315881}
   - component: {fileID: 4209443107630101519}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ValueBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,9 +362,9 @@ GameObject:
   - component: {fileID: -3060932346206666220}
   - component: {fileID: 3071494151991942757}
   - component: {fileID: 2948063936417000315}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +378,7 @@ RectTransform:
   m_GameObject: {fileID: 5158793120964649507}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.015, y: 0.015, z: 0.015}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2616635443207580095}
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 5538786453320904741}
   - component: {fileID: 8262257594722796905}
   - component: {fileID: 8179114476357708357}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ValueTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
