@@ -23,7 +23,9 @@ public class TrickManager : MonoBehaviour
         if (card == null)
         {
             Debug.LogError($"Tried to play a NULL card from {player.playerName} using {cardGO.name}");
+            return;
         }
+
         //Move card to play area
         cardGO.transform.SetParent(transform, worldPositionStays: true);
 
@@ -45,7 +47,7 @@ public class TrickManager : MonoBehaviour
         //If full trick, resolve; otherwise advance turn
         if (playedCards.Count >= TurnManager.turn.playerOrder.Count)
         {
-            DetermineWinner();
+            Invoke(nameof(DetermineWinner), 2f); //Delay to allow anims to finish
         }
         else
         { 

@@ -26,8 +26,17 @@ public class DeckManager : MonoBehaviour
 
     private void Awake()
     {
-        if (dm == null) dm = this;
-        else Destroy(gameObject);
+        if (dm == null)
+        {
+            dm = this;
+            //Initialize DOTween safely
+            DOTween.Init(recycleAllByDefault: false, useSafeMode: true, logBehaviour: LogBehaviour.Verbose);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         LoadDeck();
     }
@@ -37,6 +46,13 @@ public class DeckManager : MonoBehaviour
         hiddenZone.gameObject.SetActive(false); // Hide AI hand area by default
     }
 
+    private void OnDestroy()
+    {
+        //Kill all tween when DeckManager is destroyed
+        if (deckTransform != null)
+            deckTransform.DOKill();
+    }
+
     public void ShuffleAndDeal()
     {
         if (dm == null)
@@ -44,6 +60,10 @@ public class DeckManager : MonoBehaviour
             Debug.LogError("DeckManager instance is not initialized.");
             return;
         }
+
+        //Kill any existing tweens on deckTransform
+        if (deckTransform != null)
+            deckTransform.DOKill();
 
         // Clone and shuffle current deck
         currentDeck = new(fullDeck);
@@ -72,28 +92,44 @@ public class DeckManager : MonoBehaviour
         // Remaining 13 cards go to wild magic hand
         wildMagicHand.AddRange(currentDeck);
         Debug.Log("Shuffling complete. Wild Magic Hand is ready.");
-        return;
+        
     }
 
     private void Shuffle(List<CardData> deck)
     {
+        //Single shake animation for shuffle effect
+        if (deckTransform != null)
+        {
+            deckTransform.DOShakePosition(2f, 30f, 15, 90)
+                .SetEase(Ease.InOutSine)
+                .OnKill(() => Debug.Log("Shuffle animation complete."));
+        }
+
         for (int i = 0; i < deck.Count; i++)
         {
             int rand = Random.Range(i, deck.Count);
             CardData temp = deck[i];
             deck[i] = deck[rand];
             deck[rand] = temp;
-            deckTransform.DOShakePosition(0.5f, 20f, 10, 90).SetEase(Ease.InOutSine); //Test visuals to see if it mimicks a shuffle
         }
     }
 
     private void LoadDeck()
     {
-        fullDeck = new(Resources.LoadAll<CardData>("Cards"));
+        fullDeck = new List<CardData>(Resources.LoadAll<CardData>("Cards"));
 
         // Corrected the issue by separating the tweening logic from the Vector3 creation
-        deckTransform.DOLocalMove(new Vector3(Screen.width / 2, Screen.height / 2, 1f), 1f)
-            .SetEase(Ease.InOutSine);
+        //Safety check for null added
+        if (deckTransform != null)
+        {
+            deckTransform.DOLocalMove(new Vector3(Screen.width / 2, Screen.height / 2, 1f), 1f)
+                .SetEase(Ease.InOutSine)
+                .OnKill(() => Debug.Log("Deck load animation complete"));
+        }
+        else
+        {
+            Debug.LogWarning("Deck Transform is not assigned.");
+        }
 
         if (fullDeck.Count != 52)
             Debug.LogWarning($"Loaded {fullDeck.Count} cards instead of 52. Check for missing assets.");
