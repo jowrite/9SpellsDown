@@ -30,13 +30,14 @@ public class MenuManager : MonoBehaviour
     private void Start()
     {
         if (AudioManager.am) AudioManager.am.PlayMusic(menuMusic);
+        UpdateSoundToggle();
     }
-
+    
     //Taps will toggle the panel visibility
     public void ToggleRules()
     {
         isRulesPanelOpen = !isRulesPanelOpen;
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();
 
         if (isRulesPanelOpen)
         {
@@ -50,6 +51,16 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void ToggleSound()
+    {
+        if (AudioManager.am)
+        {
+            AudioManager.am.ToggleMute();
+            UpdateSoundToggle();
+            PlayButtonSound();
+        }
+    }
+
     private void SetTextVisible(TextMeshProUGUI rulesButtonText, bool v)
     {
         Color color = rulesButtonText.color;
@@ -60,7 +71,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleScores()
     {
         isScoresPanelOpen = !isScoresPanelOpen;
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();
 
         if (isScoresPanelOpen)
         {
@@ -76,7 +87,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleUpgrades()
     {
         isUpgradesPanelOpen = !isUpgradesPanelOpen;
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();
 
         if (isUpgradesPanelOpen)
         {
@@ -92,14 +103,14 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();        
         //SceneManager.LoadScene("Game");
         Debug.Log("Start Game pressed");
     }
 
     public void QuitGame()
     {
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();
         Application.Quit();
         Debug.Log("Quit Game pressed");
     }
@@ -109,7 +120,7 @@ public class MenuManager : MonoBehaviour
     public void Settings()
     {
         isSettingsPanelOpen = !isSettingsPanelOpen;
-        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        PlayButtonSound();
 
         if (isSettingsPanelOpen)
         {
@@ -122,6 +133,19 @@ public class MenuManager : MonoBehaviour
             SetTextVisible(buttonText, false);
         }
         Debug.Log("Settings pressed");
+    }
+
+    private void UpdateSoundToggle()
+    {
+        if (soundToggleImage && AudioManager.am)
+        {
+            soundToggleImage.sprite = AudioManager.am.IsMuted ? soundOffSprite : soundOnSprite;
+        }
+    }
+
+    private void PlayButtonSound()
+    {
+        if (AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
     }
 
 }
