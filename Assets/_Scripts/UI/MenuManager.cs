@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -10,12 +11,16 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private Animator anim;
 
-    [SerializeField] private TextMeshProUGUI ButtonText;
+    [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] private Image soundToggleImage;
+    [SerializeField] private Sprite soundOnSprite;
+    [SerializeField] private Sprite soundOffSprite;
 
     //Panel visibility vars
     private bool isRulesPanelOpen = false;
     private bool isScoresPanelOpen = false;
     private bool isUpgradesPanelOpen = false;
+    private bool isSettingsPanelOpen = false;
 
     private void Awake()
     {
@@ -24,24 +29,24 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        //if (AudioManager.instance) AudioManager.instance.PlayMusic(menuMusic);
+        if (AudioManager.am) AudioManager.am.PlayMusic(menuMusic);
     }
 
     //Taps will toggle the panel visibility
     public void ToggleRules()
     {
         isRulesPanelOpen = !isRulesPanelOpen;
-        //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
 
         if (isRulesPanelOpen)
         {
             anim.Play("ShowRulesPanel");
-            SetTextVisible(ButtonText, true);
+            SetTextVisible(buttonText, true);
         }
         else
         {
             anim.Play("HideRulesPanel");
-            SetTextVisible(ButtonText, false);
+            SetTextVisible(buttonText, false);
         }
     }
 
@@ -55,48 +60,68 @@ public class MenuManager : MonoBehaviour
     public void ToggleScores()
     {
         isScoresPanelOpen = !isScoresPanelOpen;
-        //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
 
         if (isScoresPanelOpen)
         {
             anim.Play("ShowScores");
-            SetTextVisible(ButtonText, true);
+            SetTextVisible(buttonText, true);
         }    
         else
         {
             anim.Play("HideScores");
-            SetTextVisible(ButtonText, false);
+            SetTextVisible(buttonText, false);
         }
     }
     public void ToggleUpgrades()
     {
         isUpgradesPanelOpen = !isUpgradesPanelOpen;
-        //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
 
         if (isUpgradesPanelOpen)
         {
             anim.Play("ShowUpgrades");
-            SetTextVisible(ButtonText, true);
+            SetTextVisible(buttonText, true);
         }
         else
         {
             anim.Play("HideUpgrades");
-            SetTextVisible(ButtonText, false);
+            SetTextVisible(buttonText, false);
         }
     }
 
     public void PlayGame()
     {
-        //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
         //SceneManager.LoadScene("Game");
         Debug.Log("Start Game pressed");
     }
 
     public void QuitGame()
     {
-        //if(AudioManager.instance) AudioManager.instance.PlaySFX(buttonPressSFX);
-        //Application.Quit();
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+        Application.Quit();
         Debug.Log("Quit Game pressed");
+    }
+
+    //Game Play scene audio settings
+
+    public void Settings()
+    {
+        isSettingsPanelOpen = !isSettingsPanelOpen;
+        if(AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+
+        if (isSettingsPanelOpen)
+        {
+            anim.Play("ShowSettings");
+            SetTextVisible(buttonText, true);
+        }
+        else
+        {
+            anim.Play("HideSettings");
+            SetTextVisible(buttonText, false);
+        }
+        Debug.Log("Settings pressed");
     }
 
 }
