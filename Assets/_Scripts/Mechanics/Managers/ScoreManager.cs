@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
     public int startingCurse = 9;
+
+    //Event to notify curse updates
+    public System.Action OnScoresUpdated;
 
     private void Awake()
     {
@@ -20,6 +24,8 @@ public class ScoreManager : MonoBehaviour
             p.curseLevel = startingCurse;
             p.spellCastsThisRound = 0;
         }
+
+        OnScoresUpdated?.Invoke();
     }
 
     public void ResolveRound(List<PlayerData> players)
@@ -40,10 +46,11 @@ public class ScoreManager : MonoBehaviour
             p.spellCastsThisRound = 0; // Reset spell casts for next round
         }
 
-        //Apply magic law balance check if needed here
+        //Notify UI
+        OnScoresUpdated?.Invoke();
     }
 
-
+    
     public bool CheckGameEnd(List<PlayerData> players)
     {
         foreach (var p in players)

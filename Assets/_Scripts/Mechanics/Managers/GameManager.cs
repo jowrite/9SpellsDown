@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Initialize scores
+        ScoreManager.instance.InitializeScores(players);
+
         StartRound();
         DOTween.Init(); //Ensures DOTween is initialized
         //SimulateRound();
@@ -75,6 +78,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
 
         }
+        ScoreManager.instance.ResolveRound(players);
 
         //Update HUDs
         foreach (PlayerHUD hud in playerHUDs)

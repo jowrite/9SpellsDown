@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip winSFX;
     [SerializeField] private AudioClip loseSFX;
     [SerializeField] private AudioClip buttonPressSFX;
+    [SerializeField] private AudioClip foilRevealSFX;
 
     private bool isMuted = false;
 

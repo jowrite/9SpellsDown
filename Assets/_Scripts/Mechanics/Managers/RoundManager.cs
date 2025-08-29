@@ -24,7 +24,8 @@ public class RoundManager : MonoBehaviour
 
     private void RollFoilElement()
     {
-        int roll = Random.Range(0, 5);
+        //Changing to 0-4 to see if it fixes Foil bug
+        int roll = Random.Range(0, 4);
         foilElement = (ElementType)roll;
 
         if (foilLabel != null)
@@ -34,8 +35,7 @@ public class RoundManager : MonoBehaviour
                 : "No Foil Element";
         }
 
-        //if (AudioManager.instance && foilRevealSFX)
-        //    AudioManager.instance.PlaySFX(foilRevealSFX);
+        if (AudioManager.am && foilRevealSFX) AudioManager.am.PlaySFX(foilRevealSFX);
 
         Debug.Log($"Foil element for this round is: {foilElement}");
     }
