@@ -1933,8 +1933,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1069547628}
-  - component: {fileID: 1069547629}
   - component: {fileID: 1069547627}
+  - component: {fileID: 1069547629}
   m_Layer: 5
   m_Name: WitchAI2
   m_TagString: Untagged
@@ -2284,10 +2284,13 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   menuMusic: {fileID: 0}
   gameMusic: {fileID: 8300000, guid: b4274d2400da0d641a73192c8f93dc5a, type: 3}
-  cardPlaySFX: {fileID: 0}
+  earthCardPlaySFX: {fileID: 8300000, guid: dc284a176df5c044ab08ef18845e25bb, type: 3}
+  waterCardPlaySFX: {fileID: 8300000, guid: 2e127ddd7fb9159448fdeb1bbf572b98, type: 3}
+  airCardPlaySFX: {fileID: 8300000, guid: b488c999c3391814885d531019d1eb76, type: 3}
+  fireCardPlaySFX: {fileID: 8300000, guid: b4571a22506494742a895e271adb8c84, type: 3}
   winSFX: {fileID: 0}
   loseSFX: {fileID: 0}
-  buttonPressSFX: {fileID: 0}
+  buttonPressSFX: {fileID: 8300000, guid: 2fb353352a36b9a4a9abde4ca2cec63e, type: 3}
   foilRevealSFX: {fileID: 0}
 --- !u!1 &1432378210
 GameObject:

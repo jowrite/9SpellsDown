@@ -15,7 +15,10 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clips")]
     [SerializeField] private AudioClip menuMusic;
     [SerializeField] private AudioClip gameMusic;
-    [SerializeField] private AudioClip cardPlaySFX;
+    [SerializeField] private AudioClip earthCardPlaySFX;
+    [SerializeField] private AudioClip waterCardPlaySFX;
+    [SerializeField] private AudioClip airCardPlaySFX;
+    [SerializeField] private AudioClip fireCardPlaySFX;
     [SerializeField] private AudioClip winSFX;
     [SerializeField] private AudioClip loseSFX;
     [SerializeField] private AudioClip buttonPressSFX;

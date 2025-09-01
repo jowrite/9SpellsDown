@@ -46,6 +46,8 @@ public class ScoreManager : MonoBehaviour
             p.spellCastsThisRound = 0; // Reset spell casts for next round
         }
 
+        CheckGameEnd(players);
+
         //Notify UI
         OnScoresUpdated?.Invoke();
     }

@@ -137,6 +137,21 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void OnTrickResolved(PlayerData winner)
+    {
+        trickLeader = winner; //This should carry into next round
+        tricksPlayed++;
+
+        if (tricksPlayed >= 13)
+        {
+            EndRound();
+        }
+        else
+        {
+            TurnManager.turn.StartNewTrick(winner);
+        }
+    }
+
     //SIMULATE ROUNDS FOR TESTING
     #region
     //public void SimulateRound()
@@ -239,19 +254,6 @@ public class GameManager : MonoBehaviour
 
     //}
     #endregion
-    
-    public void OnTrickResolved(PlayerData winner)
-    {
-        trickLeader = winner; //This should carry into next round
-        tricksPlayed++;
 
-        if (tricksPlayed >= 13)
-        {
-            EndRound();
-        }
-        else
-        {
-            TurnManager.turn.StartNewTrick(winner);
-        }
-    }
+
 }
