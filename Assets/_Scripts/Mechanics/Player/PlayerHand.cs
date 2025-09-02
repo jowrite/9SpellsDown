@@ -30,6 +30,8 @@ public class PlayerHand : MonoBehaviour
             ui.SetCardVisuals();
         }
 
+        FanOutCards();
+
     }
 
     public void FanOutCards()
@@ -71,6 +73,7 @@ public class PlayerHand : MonoBehaviour
         });
 
         PopulateHand(playerData.hand);
+        FanOutCards();
     }
 
     private GameObject GetCardPrefab(ElementType element)

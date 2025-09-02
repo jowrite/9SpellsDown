@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
         DeckManager.dm.ShuffleAndDeal();
 
         //Only fan out cards for human player
-        PlayerHand humanHand = Object.FindFirstObjectByType<PlayerHand>();
-        if (humanHand != null && humanHand.playerData.isHuman)
-        {
-            humanHand.FanOutCards();
-        }
+        //PlayerHand humanHand = Object.FindFirstObjectByType<PlayerHand>();
+        //if (humanHand != null && humanHand.playerData.isHuman)
+        //{
+        //    humanHand.FanOutCards();
+        //}
 
         //Ensure playerOrder is populated
         if (TurnManager.turn.playerOrder == null || TurnManager.turn.playerOrder.Count == 0)
