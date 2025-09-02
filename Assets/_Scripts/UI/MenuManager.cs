@@ -5,17 +5,17 @@ using System;
 
 public class MenuManager : MonoBehaviour
 {
-    public static MenuManager mm;
+    //public static MenuManager mm;
 
-    [SerializeField] private AudioClip menuMusic;
-    [SerializeField] private AudioClip buttonPressSFX;
+    //[SerializeField] private AudioClip menuMusic;
+    //[SerializeField] private AudioClip buttonPressSFX;
 
     [SerializeField] private Animator anim;
 
     [SerializeField] private TextMeshProUGUI buttonText;
-    [SerializeField] private Image soundToggleImage;
-    [SerializeField] private Sprite soundOnSprite;
-    [SerializeField] private Sprite soundOffSprite;
+    //[SerializeField] private Image soundToggleImage;
+    //[SerializeField] private Sprite soundOnSprite;
+    //[SerializeField] private Sprite soundOffSprite;
 
     //Panel visibility vars
     private bool isRulesPanelOpen = false;
@@ -26,22 +26,22 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        if (mm == null) mm = this;
-        else Destroy(gameObject);
+        //if (mm == null) mm = this;
+        //else Destroy(gameObject);
         if (anim == null) anim = GetComponent<Animator>();
     }
 
     private void Start()
     {
-        if (AudioManager.am) AudioManager.am.PlayMusic(menuMusic);
-        UpdateSoundToggle();
+        //if (AudioManager.am) AudioManager.am.PlayMusic(menuMusic);
+        //UpdateSoundToggle();
     }
     
     //Taps will toggle the panel visibility
     public void ToggleRules()
     {
         isRulesPanelOpen = !isRulesPanelOpen;
-        PlayButtonSound();
+        //PlayButtonSound();
 
         if (isRulesPanelOpen)
         {
@@ -60,8 +60,8 @@ public class MenuManager : MonoBehaviour
         if (AudioManager.am)
         {
             AudioManager.am.ToggleMute();
-            UpdateSoundToggle();
-            PlayButtonSound();
+            //UpdateSoundToggle();
+            //PlayButtonSound();
         }
     }
 
@@ -75,7 +75,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleScores()
     {
         isScoresPanelOpen = !isScoresPanelOpen;
-        PlayButtonSound();
+        //PlayButtonSound();
 
         if (isScoresPanelOpen)
         {
@@ -91,7 +91,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleUpgrades()
     {
         isUpgradesPanelOpen = !isUpgradesPanelOpen;
-        PlayButtonSound();
+        //PlayButtonSound();
 
         if (isUpgradesPanelOpen)
         {
@@ -107,14 +107,14 @@ public class MenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        PlayButtonSound();        
-        //SceneManager.LoadScene("Game");
+        //PlayButtonSound();        
+        SceneLoader.sl.LoadSceneByName("GamePlay");
         Debug.Log("Start Game pressed");
     }
 
     public void QuitGame()
     {
-        PlayButtonSound();
+        //PlayButtonSound();
         Application.Quit();
         Debug.Log("Quit Game pressed");
     }
@@ -124,7 +124,7 @@ public class MenuManager : MonoBehaviour
     public void Settings()
     {
         isSettingsPanelOpen = !isSettingsPanelOpen;
-        PlayButtonSound();
+        //PlayButtonSound();
 
         if (isSettingsPanelOpen)
         {
@@ -139,18 +139,18 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Settings pressed");
     }
 
-    private void UpdateSoundToggle()
-    {
-        if (soundToggleImage && AudioManager.am)
-        {
-            soundToggleImage.sprite = AudioManager.am.IsMuted ? soundOffSprite : soundOnSprite;
-        }
-    }
+    //private void UpdateSoundToggle()
+    //{
+    //    if (soundToggleImage && AudioManager.am)
+    //    {
+    //        soundToggleImage.sprite = AudioManager.am.IsMuted ? soundOffSprite : soundOnSprite;
+    //    }
+    //}
 
     public void PromptWildMagic()
     {
         isWildMagicPromptOpen = !isWildMagicPromptOpen;
-        PlayButtonSound();
+        //PlayButtonSound();
 
         if (isWildMagicPromptOpen)
         {
@@ -165,9 +165,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Wild Magic Prompt shown");
     }
 
-    private void PlayButtonSound()
-    {
-        if (AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
-    }
+    //private void PlayButtonSound()
+    //{
+    //    if (AudioManager.am) AudioManager.am.PlaySFX(buttonPressSFX);
+    //}
 
 }

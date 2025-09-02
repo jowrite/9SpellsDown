@@ -3,7 +3,7 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager rm; 
-    public static MenuManager mm;
+    //public static MenuManager mm;
 
     public ElementType foilElement { get; private set; }
 
@@ -44,7 +44,7 @@ public class RoundManager : MonoBehaviour
 
     private void PromptWildMagic()
     {
-        MenuManager.mm.PromptWildMagic();
+        //MenuManager.mm.PromptWildMagic();
     }
 
     private void DealCards()

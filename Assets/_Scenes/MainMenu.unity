@@ -673,7 +673,10 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   buttonPressSFX: {fileID: 0}
   anim: {fileID: 0}
-  ButtonText: {fileID: 1476854360}
+  buttonText: {fileID: 0}
+  soundToggleImage: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!1 &447583410
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,7 +712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1766}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: -41.4, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &447583412
@@ -1527,9 +1530,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuMusic: {fileID: 0}
-  buttonPressSFX: {fileID: 0}
+  buttonPressSFX: {fileID: 8300000, guid: 2fb353352a36b9a4a9abde4ca2cec63e, type: 3}
   anim: {fileID: 835499684}
-  ButtonText: {fileID: 1201014072}
+  buttonText: {fileID: 0}
+  soundToggleImage: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!95 &835499684
 Animator:
   serializedVersion: 7
@@ -1962,7 +1968,10 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   buttonPressSFX: {fileID: 0}
   anim: {fileID: 0}
-  ButtonText: {fileID: 138250383}
+  buttonText: {fileID: 0}
+  soundToggleImage: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!1 &1201014070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2971,7 +2980,10 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   buttonPressSFX: {fileID: 0}
   anim: {fileID: 1757737158}
-  ButtonText: {fileID: 532354830}
+  buttonText: {fileID: 0}
+  soundToggleImage: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!95 &1757737158
 Animator:
   serializedVersion: 7
@@ -3428,7 +3440,10 @@ MonoBehaviour:
   menuMusic: {fileID: 0}
   buttonPressSFX: {fileID: 0}
   anim: {fileID: 2100541277}
-  ButtonText: {fileID: 1071149647}
+  buttonText: {fileID: 0}
+  soundToggleImage: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!95 &2100541277
 Animator:
   serializedVersion: 7
@@ -3571,7 +3586,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1972863132}
   m_HandleRect: {fileID: 1972863131}
   m_Direction: 2
-  m_Value: 0.54153246
+  m_Value: 0.9999999
   m_Size: 0.3521281
   m_NumberOfSteps: 0
   m_OnValueChanged:
