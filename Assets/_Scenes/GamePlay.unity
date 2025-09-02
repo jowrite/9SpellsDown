@@ -929,6 +929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e861e855601b1f04db686ccd246ade21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 1022000260}
   playerNameText: {fileID: 988324717}
   curseLevelText: {fileID: 1581496093}
   spellCastText: {fileID: 1728561109}
@@ -2201,6 +2202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e861e855601b1f04db686ccd246ade21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 368885549}
   playerNameText: {fileID: 986099448}
   curseLevelText: {fileID: 749022828}
   spellCastText: {fileID: 1650828909}
@@ -2453,7 +2455,7 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   sfxSource: {fileID: 0}
   menuMusic: {fileID: 0}
-  gameMusic: {fileID: 8300000, guid: b4274d2400da0d641a73192c8f93dc5a, type: 3}
+  gameMusic: {fileID: 0}
   earthCardPlaySFX: {fileID: 8300000, guid: dc284a176df5c044ab08ef18845e25bb, type: 3}
   waterCardPlaySFX: {fileID: 8300000, guid: 2e127ddd7fb9159448fdeb1bbf572b98, type: 3}
   airCardPlaySFX: {fileID: 8300000, guid: b488c999c3391814885d531019d1eb76, type: 3}
@@ -3654,6 +3656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e861e855601b1f04db686ccd246ade21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 1182404123}
   playerNameText: {fileID: 0}
   curseLevelText: {fileID: 0}
   spellCastText: {fileID: 0}

@@ -80,11 +80,11 @@ public class GameManager : MonoBehaviour
         }
         ScoreManager.instance.ResolveRound(players);
 
-        //Update HUDs
-        foreach (PlayerHUD hud in playerHUDs)
-        {
-            hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
-        }
+        ////Update HUDs
+        //foreach (PlayerHUD hud in playerHUDs)
+        //{
+        //    hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
+        //}
 
         CheckMagicLaw();
         currentRound++;

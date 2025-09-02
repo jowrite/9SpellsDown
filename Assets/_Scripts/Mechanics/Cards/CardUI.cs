@@ -133,6 +133,8 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
         // Reparent + animate into the play area (use TrickManager transform, so visuals remain)
         SnapToZone(validZone.transform, worldPosition);
+
+
     }
     //Old logic, trying something new above
     ////Check if its the player's turn
