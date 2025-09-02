@@ -18,9 +18,9 @@ public class PlayerHUD : MonoBehaviour
 
     public void UpdateHUD(PlayerData data)
     {
-        playerNameText.text = data.playerName;
-        curseLevelText.text = $"{data.curseLevel}";
-        spellCastText.text = $"{data.spellCastsThisRound}";
+        //playerNameText.text = data.playerName;
+        //curseLevelText.text = $"{data.curseLevel}";
+        //spellCastText.text = $"{data.spellCastsThisRound}";
     }
 
     public void SetLeaderHighlight(bool isLeader)

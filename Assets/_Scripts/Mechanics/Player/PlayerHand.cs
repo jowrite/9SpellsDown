@@ -58,6 +58,7 @@ public class PlayerHand : MonoBehaviour
     {
         foreach (Transform child in handArea)
         {
+            child.DOKill();
             Destroy(child.gameObject);
         }
     }
@@ -70,7 +71,22 @@ public class PlayerHand : MonoBehaviour
             return elementComparison != 0 ? elementComparison : a.value.CompareTo(b.value);
         });
 
-        PopulateHand(playerData.hand);
+        //Reorder GameObject to match sorted list
+        for (int i = 0; i < playerData.hand.Count; i++)
+        {
+            CardData card = playerData.hand[i];
+            for (int j = 0; j < handArea.childCount; j++)
+            {
+                CardUI ui = handArea.GetChild(j).GetComponent<CardUI>();
+                if (ui != null && ui.cd == card)
+                {
+                    handArea.GetChild(j).SetSiblingIndex(i);
+                    break;
+                }
+            }
+        }
+
+        FanOutCards();
     }
 
     private GameObject GetCardPrefab(ElementType element)
