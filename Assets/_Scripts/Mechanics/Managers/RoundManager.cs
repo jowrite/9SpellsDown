@@ -3,16 +3,18 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour
 {
     public static RoundManager rm; 
+    public static MenuManager mm;
 
     public ElementType foilElement { get; private set; }
 
     [SerializeField] private AudioClip foilRevealSFX;
-    [SerializeField] private TMPro.TMP_Text foilLabel;
+    [SerializeField] private TMPro.TMP_Text foilLabel; //instead of text we should do image icons?
 
     private void Awake()
     {
         if (rm == null) rm = this;
         else Destroy(gameObject);
+
     }
 
     public void StartRound()
@@ -38,6 +40,11 @@ public class RoundManager : MonoBehaviour
         if (AudioManager.am && foilRevealSFX) AudioManager.am.PlaySFX(foilRevealSFX);
 
         Debug.Log($"Foil element for this round is: {foilElement}");
+    }
+
+    private void PromptWildMagic()
+    {
+        MenuManager.mm.PromptWildMagic();
     }
 
     private void DealCards()

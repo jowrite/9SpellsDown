@@ -426,7 +426,7 @@ MonoBehaviour:
   dragScale: 1.1
   returnDuration: 0.3
   playVFX: {fileID: 0}
-  playSFX: {fileID: 0}
+  playSFX: {fileID: 8300000, guid: 2e127ddd7fb9159448fdeb1bbf572b98, type: 3}
 --- !u!61 &2948063936417000315
 BoxCollider2D:
   m_ObjectHideFlags: 0

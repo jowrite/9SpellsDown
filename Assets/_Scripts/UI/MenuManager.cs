@@ -5,6 +5,7 @@ using System;
 
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager mm;
 
     [SerializeField] private AudioClip menuMusic;
     [SerializeField] private AudioClip buttonPressSFX;
@@ -21,9 +22,12 @@ public class MenuManager : MonoBehaviour
     private bool isScoresPanelOpen = false;
     private bool isUpgradesPanelOpen = false;
     private bool isSettingsPanelOpen = false;
+    private bool isWildMagicPromptOpen = false;
 
     private void Awake()
     {
+        if (mm == null) mm = this;
+        else Destroy(gameObject);
         if (anim == null) anim = GetComponent<Animator>();
     }
 
@@ -141,6 +145,24 @@ public class MenuManager : MonoBehaviour
         {
             soundToggleImage.sprite = AudioManager.am.IsMuted ? soundOffSprite : soundOnSprite;
         }
+    }
+
+    public void PromptWildMagic()
+    {
+        isWildMagicPromptOpen = !isWildMagicPromptOpen;
+        PlayButtonSound();
+
+        if (isWildMagicPromptOpen)
+        {
+            anim.Play("ShowWildMagicPrompt");
+            SetTextVisible(buttonText, true);
+        }
+        else
+        {
+            anim.Play("HideWildMagicPrompt");
+            SetTextVisible(buttonText, false);
+        }
+        Debug.Log("Wild Magic Prompt shown");
     }
 
     private void PlayButtonSound()
