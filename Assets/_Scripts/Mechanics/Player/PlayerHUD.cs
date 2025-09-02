@@ -4,9 +4,13 @@ using TMPro;
 
 public class PlayerHUD : MonoBehaviour
 {
-    public TextMeshProUGUI playerNameText;
-    public TextMeshProUGUI curseLevelText;
-    public TextMeshProUGUI spellCastText;
+    [Header("Player References")]
+    private PlayerData playerData;
+
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI playerNameText;
+    [SerializeField] private TextMeshProUGUI curseLevelText;
+    [SerializeField] private TextMeshProUGUI spellCastText;
 
     [SerializeField] private Image frame;
     [SerializeField] private Material defaultMaterial;
