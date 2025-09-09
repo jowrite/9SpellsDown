@@ -63,12 +63,13 @@ public class AIController : MonoBehaviour
             .SetEase(Ease.OutBack)
             .OnComplete(() =>
             {
+                //Register play with TrickManager after anim completes
                 TrickManager.tm.PlayCard(ai, chosen, cardGO);
-
+                //Remove from AI hand
+                ai.hand.Remove(chosen);
             });
 
-        //Remove from AI hand
-        ai.hand.Remove(chosen);
+        
     }
 
     private Vector3 GetAICardPosition(PlayerData ai)

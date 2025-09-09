@@ -122,18 +122,17 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             ReturnToHand();
             return;
         }
-        
-        // All good — register play first, then animate to zone
-        Debug.Log($"TryPlay: registering play for {owner.playerName} card {cd.cardName}");
-        TrickManager.tm.PlayCard(owner, cd, gameObject);
-
+        //Animate first then register play to fix bug hopefully
         //Convert screen position to world position for effects
         Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenPosition);
         worldPosition.z = 0f; // Assuming a 2D game in XY plane
 
         // Reparent + animate into the play area (use TrickManager transform, so visuals remain)
-        SnapToZone(validZone.transform, worldPosition);
+        SnapToZone(validZone.transform, worldPosition); //Keep this because visuals are correct**
 
+        // All good — register play first, then animate to zone
+        Debug.Log($"TryPlay: registering play for {owner.playerName} card {cd.cardName}");
+        TrickManager.tm.PlayCard(owner, cd, gameObject);
 
     }
     //Old logic, trying something new above
@@ -182,7 +181,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
            }); 
     }
 
-    private void SnapToZone(Transform zoneTransform, Vector3 screenPosition)
+    private void SnapToZone(Transform zoneTransform, Vector3 screenPosition, Action onComplete = null)
     {
 
         // Reparent to TrickManager play area so the card sits under TrickManager in hierarchy
@@ -201,6 +200,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         snapSeq.OnComplete(() =>
         {
             zoneTransform.GetComponent<DropZone>().OnCardPlayed(this); // Notify drop zone
+            onComplete?.Invoke(); //Completion callback
         });
         ////Animate position, scale and fade
         //Sequence snapSeq = DOTween.Sequence();

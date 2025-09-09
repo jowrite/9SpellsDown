@@ -93,9 +93,7 @@ public class TrickManager : MonoBehaviour
 
         Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
         winner.spellCastsThisRound++;
-
-        //Update scores UI
-        ScoreManager.instance.OnScoresUpdated?.Invoke();
+        
 
         foreach (PlayedCard pc in playedCards)
         {
@@ -116,6 +114,8 @@ public class TrickManager : MonoBehaviour
 
     public void ArrangePlayedCards()
     {
+        //Adding small delay to ensure all anims complete first
+        DOVirtual.DelayedCall(0.1f, () => { 
         float spacing = 2.5f;
         float startX = -(playedCards.Count - 1) * spacing * 0.5f; // Tweak as needed
 
@@ -131,8 +131,9 @@ public class TrickManager : MonoBehaviour
                 Vector3 targetPos = new Vector3(startX + i * spacing, 0f, 0f);
                 //Move smoothly so it looks nice
                 cardT.DOLocalMove(targetPos, 0.3f).SetEase(Ease.OutCubic);
-            }  
+            }
         }
+        });
     }
 
     public int GetHighestValueInTrick(ElementType element)
