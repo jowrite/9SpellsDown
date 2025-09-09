@@ -4,14 +4,14 @@ public static class RomanNumerals
 {
     private static readonly string[] Numerals =
     {
-        "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"
+        "O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII"
     };
 
     public static string ToRoman(int number)
     {
-        if (number >= 1 && number <= 13)
+        if (number >= 0 && number <= 13)
         {
-            return Numerals[number - 1];
+            return Numerals[number];
         }
 
         Debug.LogWarning("Number out of range for Roman numeral conversion (1-13).");

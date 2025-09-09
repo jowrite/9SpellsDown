@@ -80,11 +80,11 @@ public class GameManager : MonoBehaviour
         }
         ScoreManager.instance.ResolveRound(players);
 
-        ////Update HUDs
-        //foreach (PlayerHUD hud in playerHUDs)
-        //{
-        //    hud.UpdateHUD(players[playerHUDs.IndexOf(hud)]);
-        //}
+        //Update HUDs
+        foreach (PlayerHUD hud in playerHUDs)
+        {
+            hud.UpdateHUD();
+        }
 
         CheckMagicLaw();
         currentRound++;
@@ -141,6 +141,8 @@ public class GameManager : MonoBehaviour
     {
         trickLeader = winner; //This should carry into next round
         tricksPlayed++;
+        //Update scores UI
+        ScoreManager.instance.OnScoresUpdated?.Invoke();
 
         if (tricksPlayed >= 13)
         {

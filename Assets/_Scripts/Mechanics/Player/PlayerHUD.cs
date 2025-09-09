@@ -9,11 +9,12 @@ public class PlayerHUD : MonoBehaviour
     [SerializeField] private PlayerData playerData;
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI playerNameText;
+    //[SerializeField] private TextMeshProUGUI playerNameText;
     [SerializeField] private TextMeshProUGUI curseLevelText;
     [SerializeField] private TextMeshProUGUI spellCastText;
-
     [SerializeField] private Image frame;
+
+    [Header("Materials")]
     [SerializeField] private Material defaultMaterial;
     [SerializeField] private Material leaderMaterial;
 
@@ -48,6 +49,7 @@ public class PlayerHUD : MonoBehaviour
         if (spellCastText != null)
         {
             string currentSpells = RomanNumerals.ToRoman(playerData.spellCastsThisRound);
+            spellCastText.text = currentSpells;
         }
     }
 

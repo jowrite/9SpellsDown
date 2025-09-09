@@ -94,6 +94,9 @@ public class TrickManager : MonoBehaviour
         Debug.Log($"{winner.playerName} wins the trick with {bestCard.cardName}");
         winner.spellCastsThisRound++;
 
+        //Update scores UI
+        ScoreManager.instance.OnScoresUpdated?.Invoke();
+
         foreach (PlayedCard pc in playedCards)
         {
             if (pc.cardObject != null)
