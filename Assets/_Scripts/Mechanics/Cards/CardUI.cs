@@ -128,7 +128,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         worldPosition.z = 0f; // Assuming a 2D game in XY plane
 
         // Reparent + animate into the play area (use TrickManager transform, so visuals remain)
-        SnapToZone(validZone.transform, worldPosition); //Keep this because visuals are correct**
+        SnapToZone(validZone.transform, worldPosition);
 
         // All good — register play first, then animate to zone
         Debug.Log($"TryPlay: registering play for {owner.playerName} card {cd.cardName}");
@@ -268,13 +268,7 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void AnimToPosition(Vector2 targetPos, float delay = 0f, float duration = 0.4f)
     {
-        Debug.Log($"Animating from: {transform.position} to {targetPos}");
-
-        //Convert to local space if necessary
-        if (transform.parent != null)
-        {
-            targetPos = transform.parent.InverseTransformPoint(targetPos);
-        }
+        Debug.Log($"Animating {cd.cardName} from local {transform.localPosition} to {targetPos}");
 
         transform.DOLocalMove(targetPos, duration) // Move to target position
             .SetDelay(delay)

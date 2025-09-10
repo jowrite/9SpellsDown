@@ -12,6 +12,9 @@ public class TrickManager : MonoBehaviour
     public List<PlayedCard> playedCards = new List<PlayedCard>();
     public PlayerData currentLeader;
 
+    public Transform[] anchorSlots;
+    private int currentSlotIndex = 0;
+
     private void Awake()
     {
         if (tm == null) tm = this;
@@ -27,7 +30,7 @@ public class TrickManager : MonoBehaviour
         }
 
         //Move card to play area
-        cardGO.transform.SetParent(transform, worldPositionStays: true);
+        cardGO.transform.SetParent(transform, true);
 
         playedCards.Add(new PlayedCard(player, card, cardGO));
         player.hand.Remove(card);       
@@ -42,7 +45,16 @@ public class TrickManager : MonoBehaviour
         }
 
         //Visual feedback for played card
-        ArrangePlayedCards();
+        //ArrangePlayedCards();
+        //Trying new slot anchor method
+        if (anchorSlots != null && currentSlotIndex < anchorSlots.Length)
+        {
+            Transform.targetSlot = anchorSlots[currentSlotIndex];
+            currentSlotIndex++;
+
+            cardGO.transform.DOMove(targetSlot.position, 0.5f).SetEase(Ease.OutCubic);
+        }
+
 
         //If full trick, resolve; otherwise advance turn
         if (playedCards.Count >= TurnManager.turn.playerOrder.Count)
@@ -110,6 +122,7 @@ public class TrickManager : MonoBehaviour
     {
         playedCards.Clear();
         leadElement = ElementType.None;
+        currentSlotIndex = 0;
     }
 
     public void ArrangePlayedCards()
