@@ -30,20 +30,16 @@ public class ScoreManager : MonoBehaviour
 
     public void ResolveRound(List<PlayerData> players)
     {
-        foreach (var p in players)
+        foreach (PlayerData player in players)
         {
-            int difference = p.spellCastsThisRound - 4;
+            int spellcasts = player.spellCastsThisRound;
 
-            if (difference > 0)
-            {
-                p.curseLevel -= difference;
-            }
-            else if (difference < 0)
-            {
-                p.curseLevel += Mathf.Abs(difference); //cap increase at 4
-            }
+            int curseDelta = 4 - spellcasts;
+            player.curseLevel += curseDelta;
+            player.curseLevel = Mathf.Max(0, player.curseLevel);
 
-            p.spellCastsThisRound = 0; // Reset spell casts for next round
+            Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
+
         }
 
         CheckGameEnd(players);

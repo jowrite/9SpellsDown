@@ -67,17 +67,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Round {currentRound} has ended!");
 
-        foreach (PlayerData player in players)
-        {
-            int spellcasts = player.spellCastsThisRound;
-
-            int curseDelta = 4 - spellcasts;
-            player.curseLevel += curseDelta;
-            player.curseLevel = Mathf.Max(0, player.curseLevel);
-
-            Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
-
-        }
+        
         ScoreManager.instance.ResolveRound(players);
 
         //Update HUDs
@@ -127,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             foreach(var w in winners)
             {
-                Debug.Log($"{w.playerName} diespelled their curse!");
+                Debug.Log($"{w.playerName} dispelled their curse!");
             }
         }
         else

@@ -49,7 +49,7 @@ public class TrickManager : MonoBehaviour
         //Trying new slot anchor method
         if (anchorSlots != null && currentSlotIndex < anchorSlots.Length)
         {
-            Transform.targetSlot = anchorSlots[currentSlotIndex];
+            Transform targetSlot = anchorSlots[currentSlotIndex];
             currentSlotIndex++;
 
             cardGO.transform.DOMove(targetSlot.position, 0.5f).SetEase(Ease.OutCubic);
