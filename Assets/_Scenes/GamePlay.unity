@@ -1349,6 +1349,7 @@ MonoBehaviour:
     card: {fileID: 0}
     cardObject: {fileID: 0}
   currentLeader: {fileID: 0}
+  anchorSlots: []
 --- !u!1 &749022826
 GameObject:
   m_ObjectHideFlags: 0
