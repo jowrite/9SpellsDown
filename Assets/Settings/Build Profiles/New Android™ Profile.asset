@@ -21,11 +21,11 @@ MonoBehaviour:
   m_OverrideGlobalSceneList: 1
   m_Scenes:
   - m_enabled: 1
-    m_path: Assets/_Scenes/Bootstrapper.unity
-  - m_enabled: 1
     m_path: Assets/_Scenes/MainMenu.unity
   - m_enabled: 1
     m_path: Assets/_Scenes/GamePlay.unity
+  - m_enabled: 1
+    m_path: Assets/_Scenes/Bootstrapper.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
     m_Settings: []
@@ -51,7 +51,7 @@ MonoBehaviour:
         m_ExportAsGoogleAndroidProject: 0
         m_DebugSymbolLevel: 1
         m_DebugSymbolFormat: 5
-        m_CurrentDeploymentTargetId: __builtin__target_default
+        m_CurrentDeploymentTargetId: 1B091FDF6000F7
         m_BuildType: 2
         m_BuildAppBundle: 0
         m_IPAddressToConnect: 
