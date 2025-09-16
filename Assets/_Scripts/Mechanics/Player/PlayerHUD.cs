@@ -53,10 +53,10 @@ public class PlayerHUD : MonoBehaviour
         }
     }
 
-    public void SetLeaderHighlight(bool isLeader)
+    public void SetTurnHighlight(bool isActiveTurn)
     {
         if (frame == null || defaultMaterial == null || leaderMaterial == null) return;
-        frame.material = isLeader ? leaderMaterial : defaultMaterial;
+        frame.material = isActiveTurn ? leaderMaterial : defaultMaterial;
     }
 
     public void OnTrickWon()

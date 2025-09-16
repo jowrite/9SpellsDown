@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
         ReorderPlayerList(winner);
         
         //Highlight the new leader visually
-        UpdateLeaderHighlight (playerOrder[0]);
+        UpdateTurnHighlight (playerOrder[0]);
 
         currentIndex = 0;
         TrickManager.tm.ResetTrick();
@@ -53,6 +53,13 @@ public class TurnManager : MonoBehaviour
         PlayerData currentPlayer = playerOrder[currentIndex];
         Debug.Log($"{currentPlayer.playerName}'s turn!");
 
+        //Update HUD highlight
+        for (int i = 0; i < playerOrder.Count; i++)
+        {
+            bool isActive = (playerOrder[i] == currentPlayer);
+            playerHUDs[i].SetTurnHighlight(isActive);
+        }
+
         currentPlayer.TakeTurn(); //Calls player or AI logic
     }
 
@@ -81,12 +88,12 @@ public class TurnManager : MonoBehaviour
     }
 
     //Visual shader highlight for the leader
-    private void UpdateLeaderHighlight(PlayerData leader)
+    private void UpdateTurnHighlight(PlayerData active)
     {
         for (int i = 0; i < playerOrder.Count; i++)
         {
-            bool isLeader = (playerOrder[i] == leader);
-            playerHUDs[i].SetLeaderHighlight(isLeader);
+            bool isActive = (playerOrder[i] == active);
+            playerHUDs[i].SetTurnHighlight(isActive);
         }
     }
 }
