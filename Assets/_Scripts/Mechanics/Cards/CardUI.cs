@@ -236,10 +236,10 @@ public class CardUI : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             Destroy(vfx, 2f); // Destroy after 2 seconds
         }
 
-        //if (AudioManager.am && playSFX)
-        //{
-        //    AudioManager.am.PlaySFX(playSFX);
-        //}
+        if (AudioManager.am && playSFX)
+        {
+            AudioManager.am.PlayCardSFX(cd.element);
+        }
     }
 
     public void SetCardVisuals()

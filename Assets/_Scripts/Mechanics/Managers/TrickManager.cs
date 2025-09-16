@@ -120,9 +120,17 @@ public class TrickManager : MonoBehaviour
 
     public void ResetTrick()
     {
+        Debug.Log("Resetting trick state...");
+        foreach (PlayedCard pc in playedCards)
+        {
+            if (pc.cardObject != null)
+                Destroy(pc.cardObject); // Clean up card objects
+        }
+        
         playedCards.Clear();
         leadElement = ElementType.None;
         currentSlotIndex = 0;
+        currentLeader = null;
     }
 
     public void ArrangePlayedCards()

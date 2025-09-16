@@ -73,4 +73,18 @@ public class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    public void PlayCardSFX(ElementType element)
+    {
+        AudioClip clip = null;
+        switch (element)
+        {
+            case ElementType.Earth: clip = earthCardPlaySFX; break;
+            case ElementType.Water: clip = waterCardPlaySFX; break;
+            case ElementType.Air: clip = airCardPlaySFX; break;
+            case ElementType.Fire: clip = fireCardPlaySFX; break;
+        }
+
+        if (clip != null) PlaySFX(clip);
+    }
+
 }

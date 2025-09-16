@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private PlayerData trickLeader;
     public List<PlayerData> players; //Populate in Inspector
     public List<PlayerHUD> playerHUDs; //Populate in Inspector
-    public List<PlayedCard> playedCards = new List<PlayedCard>();
+    //public List<PlayedCard> playedCards = new List<PlayedCard>();
     public List<PlayerData> playerOrder => TurnManager.turn.playerOrder;
 
 
@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Round {currentRound} starts!");
         tricksPlayed = 0;
+
+        foreach (var p in players)
+            p.spellCastsThisRound = 0; //Reset spell casts for new round
 
         DeckManager.dm.ShuffleAndDeal();
 
@@ -84,8 +87,7 @@ public class GameManager : MonoBehaviour
             EndGame();
         }
         else
-        {
-            // Add delay or wait for player input before starting next round
+        {     
             StartRound();
         }
 

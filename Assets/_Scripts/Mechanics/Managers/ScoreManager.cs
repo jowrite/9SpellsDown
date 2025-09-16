@@ -40,6 +40,8 @@ public class ScoreManager : MonoBehaviour
 
             Debug.Log($"{player.playerName} won {spellcasts} spellcasts. Curse change: {curseDelta}. \nCurrent curse level:{player.curseLevel}");
 
+            player.spellCastsThisRound = 0; //Reset for next round
+
         }
 
         CheckGameEnd(players);
