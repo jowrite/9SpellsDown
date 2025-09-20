@@ -25,6 +25,10 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/_Scenes/GamePlay.unity
   - m_enabled: 1
+    m_path: Assets/_Scenes/WinScreen.unity
+  - m_enabled: 1
+    m_path: Assets/_Scenes/LoseScreen.unity
+  - m_enabled: 1
     m_path: Assets/_Scenes/Bootstrapper.unity
   m_ScriptingDefines: []
   m_PlayerSettingsYaml:
